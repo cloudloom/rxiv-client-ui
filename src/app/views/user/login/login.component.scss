@@ -1,0 +1,102 @@
+
+.flex_display{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    .login-title{
+        font-style: normal;
+        font-weight: normal;
+        font-size: 60px;
+        line-height: 100px;
+        color: #478EAA;
+    }
+    .days-one-font{
+        font-family: Days One;
+    }
+
+    // .content_area{
+    //     font-style: normal;
+    //     font-weight: normal;
+    //     font-size: 30px;
+    //     line-height: 50px;
+    //     color: #000000;
+    // }
+    .title_area{
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-start;
+        line-height: 32px;
+        font-size: 1rem;
+    }
+
+    // .position{
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: space-evenly;
+    //     align-items: flex-start;
+    //     width: 40%;
+    // }
+
+    .form-side{
+        width: 30%;
+    }
+
+    .style_rxiv{
+        font-weight: normal;
+        color: #000000;
+    }
+    .button_container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    // .text_size{
+    //     font-size: 15px;
+    // }
+
+    // .social-logo{
+    //     width: 16px;
+    //     height: 16px;
+    //     margin-right: 10px;
+    // }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+// .style_pwd{
+//     top: 469px;
+// }
+// .style_login{
+//     top: 557px;
+
+// background: #478EAA;
+// }
+// .style_button{
+//     width: 483px;
+//     height: 64px;
+//     left: 1081px;
+//     top: 557px;
+//     background: #478EAA;
+//     box-shadow: 4px 4px 8px rgb(71 142 170 / 10%);
+//     border-radius: 40px;
+// }
+
+
+// .h3-style{
+//     padding : 35px;
+// }
+// .text-color{
+//     color :#478EAA;
+//     font-weight: bold;
+// }

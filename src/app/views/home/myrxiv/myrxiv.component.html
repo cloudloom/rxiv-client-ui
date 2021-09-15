@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-9">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <app-myrxiv-pinned></app-myrxiv-pinned>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <app-collections></app-collections>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card h-100">
+            <div class="card-body">
+                <div>
+                    <h6 class="font-weight-semibold color-theme-1 mb-4">
+                        {{ "pages.add-to-my-rxiv" | translate | uppercase }}</h6>
+                    <ul class="list-unstyled mb-5">
+                        <li class="mb-4"><a  href="javascript:;">
+                                <i class="glyph-icon iconsminds-upload"></i>
+                                {{"pages.create-new-collection" | translate}}</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <app-add-to-files></app-add-to-files>
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+
+</div>

@@ -1,0 +1,31 @@
+<div class="card h-100">
+    <div class="card-body">
+        <h6 class="font-weight-semibold color-theme-1 mb-4">
+            FILTER RESULTS
+        </h6>
+        <div class="font-weight-bold color-theme-1 mb-4">
+            {{"pages.document.folder" | translate | uppercase}}
+        </div>
+        <div>
+            <a href="javascript:;" class="badge badge-pill mb-3  mr-1 filter-container" *ngFor="let folder of folders let i =index;" (click)="updateTag1(i)" [ngClass]="folder.status == true ? 'badge-primary' : 'badge-outline-primary'">{{folder.name}}</a>
+        </div>
+        <div class="font-weight-semibold color-theme-1 mb-4">
+            {{"pages.file-type" | translate | uppercase}}
+        </div>
+        <div>
+            <a href="javascript:;" class="badge badge-pill  mb-3  mr-1 filter-container" *ngFor="let file of files let i =index;" (click)="updateTag2(i)" [ngClass]="file.status == true ? 'badge-primary' : 'badge-outline-primary'">{{file.name}}</a>
+        </div>
+        <div class="font-weight-semibold color-theme-1 mb-4">
+            {{"pages.document.brands" | translate | uppercase}}
+        </div>
+        <div>
+            <a href="javascript:;" class="badge badge-pill  mb-3  mr-1 filter-container" *ngFor="let brand of brands let i =index;" (click)="updateTag3(i)" [ngClass]="brand.status == true ? 'badge-primary' : 'badge-outline-primary'">{{brand.name}}</a>
+        </div>
+        <div class="font-weight-semibold color-theme-1 mb-4">
+            {{"pages.study-type" | translate | uppercase}}
+        </div>
+        <div>
+            <a href="javascript:;" class="badge badge-pill  mb-3  mr-1 filter-container" *ngFor="let type of studytypes let i =index;" (click)="updateTag4(i)" [ngClass]="type.status == true ? 'badge-primary' : 'badge-outline-primary'">{{type.name}}</a>
+        </div>
+    </div>
+</div>

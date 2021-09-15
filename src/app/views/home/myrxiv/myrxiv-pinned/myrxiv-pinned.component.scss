@@ -1,0 +1,66 @@
+.myrxivpinned-wrapper{
+    
+        .glide__arrows{
+            position: absolute;
+            top: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+    
+        .glide__bullets{
+            display: none;
+        }
+        .card{
+            border: 1px solid #e5e5e5;
+            box-shadow: none;
+        }
+    
+}
+// .page-preview-container{
+//     width: 100px;
+//     height: 130px;
+//     margin: auto;
+// }
+// .unread-icon {
+//     width: 10px;
+//     height: 10px;
+//     background-color: #B46767;
+//     display: inline-block;
+//     border-radius: 50%;
+// }
+// .status{
+//     position: absolute;
+//     right: 10px;
+//     top: 10px;
+// }
+
+// .page-number{
+//     font-size: 1rem;
+//     // color: white;
+//   }
+
+
+//   .file-icon-wrapper{
+//     width: 60px;
+//     overflow: hidden;
+//     position: relative;
+
+//     img{
+//         width: 30px;height: 30px;border-radius: 50%;z-index: 1;
+//     }
+
+//     .style-icon{
+//         font-size: 12px;
+//         background-color: #B7D3DF;
+//         padding: 9px;
+//         border-radius: 50%;
+//         position: absolute;
+//         right:0;
+//     }
+//   }
+//   .page-navigation-icon {
+//     color: white;
+//   }

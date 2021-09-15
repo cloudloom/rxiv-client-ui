@@ -1,0 +1,71 @@
+<ng-container *ngIf = "documents && documents.length > 0">
+<h6 class="font-weight-semibold color-theme-1" id="page-container">
+  {{ "pages.recent" | translate }}
+</h6>
+<div class="recent-files">
+  <app-glide [settings]="{
+        gap: 0,
+        type: 'carousel',
+        peek: { before: 25, after: 25 },
+        perView: 4,
+        breakpoints: { '600': { perView: 1 }, '1000': { perView: 2 },'2000': { perView: 3 } }
+      }">
+    <div *ngFor="let document of documents" class="glide__slide">
+      <div class="card flex-row">
+        <div class="card-body">
+
+
+
+          <div>
+
+            <div dropdown [container]="'#page-container'" [placement]="'top'"  [autoClose]="true" [insideClick]="true">
+
+              <div dropdownToggle>
+                
+
+                <div class="heading">
+                  <div class="categary">
+                    {{ document.categary }}
+                  </div>
+                  <div class="status" *ngIf="!document.read">
+                    <span class="unread-icon"> </span>
+                  </div>
+                </div>
+                <div class="title-area">
+                  <div>
+                    {{ document.title }}
+                  </div>
+                  <div>
+                    <img style="width: 40px;height: 40px;border-radius: 50%;"
+                      src="../../../../../assets/img/profiles/l-2.jpg" />
+                  </div>
+
+                </div>
+
+
+                <div>
+                  {{ document.content }}
+                </div>
+              </div>
+              
+              <div *dropdownMenu class="dropdown-menu dropdown-menu-right mt-3 dropdown-container">
+                <perfect-scrollbar class="scrollbar-container">
+                  <app-activity [teamActivities]="activities"></app-activity>
+                  <a class="d-flex justify-content-center align-items-center font-weight-bold color-theme-1" (click) = "updateStatus()">Mark all as read</a>
+                </perfect-scrollbar>
+              </div>
+
+
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </app-glide>
+</div>
+</ng-container>
+
+

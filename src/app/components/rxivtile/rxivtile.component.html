@@ -1,0 +1,22 @@
+<div class="rxivtile-wrapper">
+    <div class="status" *ngIf="read">
+        <span class="unread-icon"> </span>
+    </div>
+    <h6 class="color-theme-1 font-weight-semibold" *ngIf="categary">{{categary}}</h6>
+    <div class="pt-3">
+        
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="font-weight-bold">
+                {{title}}
+            </h4>
+            <div class="file-icon-wrapper">
+                <img src="{{image}}" />
+                <i *ngIf="showFileTypeIcon" class="glyph-icon simple-icon-user style-icon"></i>
+            </div>
+        </div>
+        <div>{{pages}}</div>
+        <div class="page-preview-container mt-2">
+            <app-page-preview></app-page-preview>
+        </div>
+    </div>
+</div>

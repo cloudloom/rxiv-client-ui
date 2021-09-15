@@ -1,0 +1,35 @@
+<div class="add-to-my-files">
+
+  <h6 class="font-weight-semibold color-theme-1 mb-4">{{ "pages.add-to-my-files" | translate }}</h6>
+  <!-- <ul class="list-unstyled">
+  <li><a (click)="openModal(template)">{{"pages.upload-files" | translate}}</a></li>
+  <li><a>{{"pages.upload-folder" | translate}}</a></li>
+  <li><a>{{"pages.create-new-folder" | translate}}</a></li>
+</ul> -->
+  <ul class="list-unstyled mb-5">
+    <li class="mb-4"><a  href="javascript:;" (click)="openModal(template)"><i class="glyph-icon iconsminds-upload"></i>
+        {{"pages.upload-files" | translate}}</a>
+    </li>
+    <li class="mb-4"><a   href="javascript:;"><i class="glyph-icon iconsminds-upload-1"></i> {{"pages.upload-folder" |
+        translate}} </a>
+    </li>
+    <li class="mb-4"><a   href="javascript:;"><i class="glyph-icon iconsminds-folder-add--"></i>
+        {{"pages.create-new-folder" | translate}} </a>
+    </li>
+  </ul>
+</div>
+<ng-template #template>
+  <div class="modal-body">
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="row">
+      <div class="col-4">
+        <app-file-preview></app-file-preview>
+      </div>
+      <div class="col-8">
+        <app-document-form></app-document-form>
+      </div>
+    </div>
+  </div>
+</ng-template>

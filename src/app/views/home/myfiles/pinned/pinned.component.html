@@ -1,0 +1,36 @@
+<!-- <div class="card h-100">
+  <div class="card-body"> -->
+  <ng-container *ngIf="files && files.length > 0">
+<h6 class="font-weight-semibold color-theme-1">
+  {{ "pages.pinned" | translate }}
+</h6>
+
+<ul class="list-unstyled">
+
+  <li *ngFor="let file of files">
+    <div dropdown class="btn-group dropright"  [autoClose]="true" [insideClick]="true">
+      <button dropdownToggle type="button" class="header-icon btn btn-empty">
+        <app-state-button [btnClass]="'btn btn-secondary btn-lg btn-shadow mb-2'">
+          {{ file.name}}
+        </app-state-button>
+      </button>
+      <div  *dropdownMenu class="dropdown-menu dropdown-menu-right mt-3 dropdown-container" >
+        <perfect-scrollbar class="scrollbar-container">
+          <app-activity [teamActivities]="activities"></app-activity>
+          <a class="d-flex justify-content-center align-items-center font-weight-bold color-theme-1" (click) = "updateStatus()">Mark all as read</a>
+        </perfect-scrollbar>
+      </div>
+    </div>
+  </li>
+
+</ul>
+
+</ng-container>
+<ng-container *ngIf="files.length === 0">
+  {{message}}
+</ng-container>
+
+
+
+<!-- </div>
+</div> -->

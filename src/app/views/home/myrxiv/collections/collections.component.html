@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-between">
+<h6 class="font-weight-semibold color-theme-1">
+    {{ "pages.collections" | translate | uppercase }}
+</h6>
+<i class="glyph-icon simple-icon-equalizer"></i>
+</div>
+
+<div class="row">
+    <div class="col-4" *ngFor="let data of collections">
+
+        <div class="card mb-3 card-style" >
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6 class="font-weight-semibold">{{data.title}}</h6>
+                    <div class="d-flex justify-content-between align-items-center file-icon-wrapper">
+                        <img src="{{data.image}}" />
+                        <i class="glyph-icon simple-icon-user style-icon"></i>
+                    </div>
+                </div>
+                <div>
+                    {{data.items}}items
+                </div>
+                <div class="color-theme-1">
+                    Last opened at {{data.lastopened}}
+                </div>
+        
+            </div>
+        </div>
+    </div>
+</div>

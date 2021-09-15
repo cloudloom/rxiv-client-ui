@@ -1,0 +1,16 @@
+export interface DocumentDetails {
+    title : string,
+    description : string,
+    type  : string,
+    pageCount : number,
+    publisher : string,
+    datePublished : string,
+    industry : string,
+    brand : string,
+    productLine : string,
+    studyType :  string,
+    researchType : string,
+    researchMethod : string,
+    tags : string,
+    keywords : string,
+}

@@ -1,0 +1,25 @@
+<div class="card h-100" *ngIf = "columns && columns.length">
+  <div class="card-body">
+    <div class="position-relative">
+      <ngx-datatable [rows]="datas" [columns]="columns" [scrollbarV]="true" [scrollbarH]="true" [columnMode]="'force'"></ngx-datatable>
+
+      <div class="btn-group table-column-filter" dropdown #dropdown="bs-dropdown" [autoClose]="true" [insideClick]="true">
+        <button dropdownToggle type="button" id="table-filter-element" class="header-icon btn btn-empty">
+          <i class="glyph-icon simple-icon-equalizer"></i>
+          <!-- <span class="count">3</span> -->
+        </button>
+        <div id="table-filter-element-content" style="width: 300px;" *dropdownMenu
+          class="dropdown-menu dropdown-menu-right mt-3">
+          <perfect-scrollbar>
+            <div class="m-4" *ngFor="let data of tableFilter;let indexofelement=index;">
+              <div class="custom-control custom-checkbox mb-4">
+                <input type="checkbox" id="customCheckThis-{{indexofelement}}" [checked]="data.status" (change)= "updateTablefilterData(indexofelement)" class="custom-control-input">
+                <label for="customCheckThis-{{indexofelement}}" class="custom-control-label">{{data.title}}</label>
+              </div>
+            </div>
+          </perfect-scrollbar>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+.flex_display{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+            .position{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: flex-start;
+        width: 40%;
+        }
+
+        .login-title{
+            font-style: normal;
+            font-weight: normal;
+            font-size: 60px;
+            line-height: 100px;
+            color: #478EAA;
+        }
+        .days-one-font{
+            font-family: Days One;
+        }
+
+        .content_area{
+            font-style: normal;
+            font-weight: normal;
+            font-size: 30px;
+            line-height: 50px;
+            color: #000000;
+        }
+        .form-side{
+            width: 30%;
+        }
+}

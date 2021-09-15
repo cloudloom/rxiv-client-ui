@@ -1,0 +1,187 @@
+<div class="row">
+    <div class="col-12">
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h6 class="font-weight-semibold color-theme-1">
+                        {{"menu.myfiles" | translate | uppercase}}
+                    </h6>
+
+
+                    <!-- <div class="btn-group" dropdown #dropdown="bs-dropdown" [autoClose]="true"
+                                [insideClick]="true">
+                                <button dropdownToggle type="button" class="header-icon btn btn-empty">
+                                    <i class="glyph-icon simple-icon-equalizer"></i>
+
+                                </button>
+                                <div *dropdownMenu class="dropdown-menu dropdown-menu-right mt-3">
+                                    <perfect-scrollbar class="ml-4">
+                                        <div class="font-weight-semibold color-theme-1 mb-3">SORT BY</div>
+                                        <div class="form-check" *ngFor="let item of radiobuttonlists;let i=index;">
+                                            <input class="form-check-input" type="radio" name="gridRadios"
+                                                id="gridRadios-{{i}}" value="{{item}}" [(ngModel)]="gridRadios"
+                                                (ngModelChange)="getRadiobutton()">
+                                            <label class="form-check-label" for="gridRadios-{{i}}">
+                                                {{item}}
+                                            </label>
+                                        </div>
+                                    </perfect-scrollbar>
+                                </div>
+                            </div> -->
+                </div>
+                <div *ngFor="let item of data; let i = index;" [ngClass]="{'mb-3':data.length!==(i+1)}"
+                    (click)="onContextMenu($event, item)" [contextMenu]="basicMenu" [contextMenuSubject]="item">
+
+
+                    <a href="javascript:;" class="w-40 w-sm-100">
+                        <div class="row mb-3">
+                            <div class="col-1">
+                                <i class=" glyph-icon iconsminds-big-data icon-style"></i>
+                                <!-- <img src="/assets/img/profiles/l-2.jpg"
+                                    class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle"> -->
+                            </div>
+                            <div class="col-8 text-left">
+                                <p class="list-item-heading mb-1 font-weight-bold">{{item.title}}</p>
+                                <span class="color-theme-1 font-weight-bold">{{item.page | uppercase}}...</span><span
+                                    class="mb-4 text-small">{{ item.description }}</span>
+                            </div>
+                            <div class="col-1">
+                                <i class=" glyph-icon iconsminds-folder style-icon"></i>
+                                <!-- <img src="/assets/img/profiles/l-2.jpg" class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle"> -->
+                            </div>
+                            <div class="col-2 text-center">
+                                <div>
+                                    <img src="/assets/img/profiles/l-2.jpg"
+                                        class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle">
+                                </div>
+                                <div>
+                                    {{item.date}}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="separator mb-5" *ngIf="data.length!==(i+1)">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h6 class="font-weight-semibold color-theme-1 mb-4">
+                    {{"pages.shared-with-me" | translate | uppercase}}
+                </h6>
+
+                <!-- <div class="user d-inline-block" dropdown> -->
+                <div *ngFor="let item of data; let i = index;" [ngClass]="{'mb-3':data.length!==(i+1)}"
+                    (click)="onContextMenu($event, item)" [contextMenu]="basicMenu" [contextMenuSubject]="item">
+                    <a href="javascript:;" class="w-40 w-sm-100">
+                        <div class="row mb-3">
+                            <div class="col-1 glyph-icon iconsminds-big-data icon-style">
+                                <!-- <img src="/assets/img/profiles/l-2.jpg"
+                                    class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle"> -->
+                            </div>
+                            <div class="col-8">
+                                <p class="list-item-heading mb-1 font-weight-bold">{{item.title}}</p>
+                                <span class="color-theme-1 font-weight-bold">{{item.page | uppercase}}...</span><span
+                                    class="mb-4 text-small">{{ item.description }}</span>
+                            </div>
+                            <div class="col-1 glyph-icon iconsminds-folder style-icon">
+                                <!-- <img src="/assets/img/profiles/l-2.jpg" class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle"> -->
+                            </div>
+                            <div class="col-2 text-center">
+                                <div>
+                                    <img src="/assets/img/profiles/l-2.jpg"
+                                        class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle">
+                                </div>
+                                <div>
+                                    {{item.date}}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="separator mb-5" *ngIf="data.length!==(i+1)">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <ul>
+    <li *ngFor="let item of items" [contextMenu]="basicMenu" [contextMenuSubject]="item">{{item.name}}</li>
+</ul> -->
+<context-menu>
+
+    <ng-template contextMenuItem *ngFor="let data of contextmenuitems" (execute)="openModal(data)"
+        passive="{{data === 'add to my rxiv' ? 'true' : null}}">
+        <ng-container *ngIf="data !== 'add to my rxiv'">
+            <i class="simple-icon-docs mr-1"></i> <span triggers="focus"
+                popover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus." popoverTitle="test"
+                placement="top">{{data}}</span>
+        </ng-container>
+        <ng-container *ngIf="data === 'add to my rxiv'">
+            <button style="border: 0;background: transparent;width: 100%;text-align: left;" triggers="focus"
+                [popover]="popTemplate" [outsideClick]="true"
+                [placement]="'right'"><i class="simple-icon-docs mr-1"></i>{{data}}</button>
+        </ng-container>
+    </ng-template>
+    <!-- <ng-template contextMenuItem passive="true">
+
+    </ng-template> -->
+    <!-- <ng-template contextMenuItem divider="true"></ng-template> -->
+    <!-- <ng-template contextMenuItem let-item
+        (execute)="showMessage($event.item.name + ' said: ' + $event.item.otherProperty)">
+        Bye, {{item.title}}
+    </ng-template> -->
+
+</context-menu>
+
+
+
+<ng-template #fileInfo>
+    <div class="modal-body">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="fileinfomodalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-file-information></app-file-information>
+    </div>
+</ng-template>
+
+<ng-template #sharefile>
+    <div class="modal-body">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="sharefilemodalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <app-share-file></app-share-file>
+    </div>
+</ng-template>
+
+
+<ng-template #popTemplate>
+    <div class="addtomyRxiv-popover">
+    <div class="mb-2 font-weight-bold"><i class="glyph-icon simple-icon-layers"></i><span> {{"menu.myrxiv" | translate | uppercase}}</span></div>
+    <div class="separator mb-1"></div>
+    <div>Flooring Market in Singapore</div>
+    <div>Floring Market in Hong kong</div>
+    <div>Lorem ipsum</div>
+    <div class="mb-2">Lorem ipsum</div>
+    <div class="separator mb-1"></div>
+    <a class="text-right color-theme-1 font-weight-bold">+ADD</a>
+</div>
+</ng-template>
+
+<!-- <div>
+    <div style="overflow-x: scroll;">
+        <button type="button" class="btn btn-danger" [popover]="popTemplate" [placement]="'bottom'" [container]="'body'"
+            [outsideClick]="true">
+            overflow-y: auto;
+        </button>
+    </div>
+
+
+</div> -->
