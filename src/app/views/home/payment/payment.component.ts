@@ -1,6 +1,8 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { PaymentService} from '../payment/payment.service';
+import { MyfilesService } from '../myfiles/myfiles.service';
+import { PaymentService } from '../payment/payment.service';
 
 @Component({
   selector: 'app-payment',
@@ -9,10 +11,12 @@ import { PaymentService} from '../payment/payment.service';
 })
 export class PaymentComponent implements OnInit {
   modalRef: BsModalRef;
-  constructor(private modalService: BsModalService,
-    private paymentService : PaymentService) { }
 
-    documentDetails : any ;
+  paymentInfo : any = [];
+  constructor(private modalService: BsModalService,
+    private paymentService: PaymentService,private route: ActivatedRoute , private myfilesService : MyfilesService) { }
+
+  documentDetails: any;
 
   // documentDetails = {
   //   "title" : "Floring Market in Singapore",
@@ -31,8 +35,8 @@ export class PaymentComponent implements OnInit {
   //   "keywords" : "Lorem Ipsum",
   // }
 
-  getDocumentdetails(){
-  this.paymentService.getDocumentdetails().subscribe(documentDetails => this.documentDetails = documentDetails)
+  getDocumentdetails() {
+    this.paymentService.getDocumentdetails().subscribe(documentDetails => this.documentDetails = documentDetails)
   }
 
   openModal(template: TemplateRef<any>): void {
@@ -40,11 +44,26 @@ export class PaymentComponent implements OnInit {
       template,
       Object.assign({}, { class: 'modal-md modal-dialog-centered' })
     );
-    
+
   }
 
   ngOnInit(): void {
-    this.getDocumentdetails();
+    this.route.queryParams.subscribe(value => {
+      console.log("===>",value.key)
+
+      this.myfilesService.getFileDetails(Number(value.key)).subscribe( data => {
+
+        console.log("DOC DEAILT" , data)
+        this.documentDetails = data;
+      })
+
+
+    });
+  }
+
+  addCredit(event){
+    this.modalRef.hide();
+    this.paymentInfo.push(event)
   }
 
 }

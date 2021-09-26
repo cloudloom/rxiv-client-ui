@@ -36,6 +36,7 @@
 
 
   "menu": {
+    "payment":"Purchase",
     "recommended":"Recommended",
     "myprofile":"My profile",
     "myrxiv":"My RXIV",

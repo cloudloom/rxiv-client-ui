@@ -9,7 +9,7 @@ import { CreditCardComponent } from './credit-card/credit-card.component';
 import { BootstrapModule } from 'src/app/components/bootstrap/bootstrap.module';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [PaymentComponent, CreditCardComponent],
@@ -20,7 +20,8 @@ import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     SharedModule,
     BootstrapModule,
     BsDatepickerModule.forRoot(),
-    DatepickerModule.forRoot() 
+    DatepickerModule.forRoot() ,
+    FormsModule, ReactiveFormsModule
   ]
 })
 export class PaymentModule { }

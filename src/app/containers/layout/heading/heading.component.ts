@@ -38,6 +38,8 @@ export class HeadingComponent {
 
     else if(path === environment.adminRoot+"/profile"){
       return 'menu.myprofile';
+    }else if(path === environment.adminRoot+"/payment"){
+      return 'menu.payment';
     }
 
     // step 0
