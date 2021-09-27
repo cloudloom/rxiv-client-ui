@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { MyfilesService } from '../myfiles/myfiles.service';
 import { PaymentService } from '../payment/payment.service';
@@ -12,9 +12,10 @@ import { PaymentService } from '../payment/payment.service';
 export class PaymentComponent implements OnInit {
   modalRef: BsModalRef;
 
-  paymentInfo : any = [];
+
+  paymentInfo: any = [];
   constructor(private modalService: BsModalService,
-    private paymentService: PaymentService,private route: ActivatedRoute , private myfilesService : MyfilesService) { }
+    private paymentService: PaymentService, private route: ActivatedRoute, private myfilesService: MyfilesService,private router: Router) { }
 
   documentDetails: any;
 
@@ -49,11 +50,11 @@ export class PaymentComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(value => {
-      console.log("===>",value.key)
+      console.log("===>", value.key)
 
-      this.myfilesService.getFileDetails(Number(value.key)).subscribe( data => {
+      this.myfilesService.getFileDetails(Number(value.key)).subscribe(data => {
 
-        console.log("DOC DEAILT" , data)
+        console.log("DOC DEAILT", data)
         this.documentDetails = data;
       })
 
@@ -61,9 +62,20 @@ export class PaymentComponent implements OnInit {
     });
   }
 
-  addCredit(event){
+  addCredit(event) {
     this.modalRef.hide();
     this.paymentInfo.push(event)
+  }
+
+  checkout() {
+    let existingDoc = [];
+    if (localStorage.getItem('documents')) {
+      existingDoc = JSON.parse(localStorage.getItem('documents'));
+    }
+
+    existingDoc.push(this.documentDetails);
+    localStorage.setItem('documents', JSON.stringify(existingDoc))
+    this.router.navigate(['/app/myfiles']);
   }
 
 }

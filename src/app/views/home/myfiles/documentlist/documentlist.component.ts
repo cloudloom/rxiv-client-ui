@@ -10,7 +10,7 @@ import { MyfilesService } from '../myfiles.service';
 })
 export class DocumentlistComponent implements OnInit {
   constructor(private authService: AuthService,
-    private myfilesService : MyfilesService) { }
+    private myfilesService: MyfilesService) { }
 
   datas: any = [];
   columns: any = [];
@@ -25,12 +25,12 @@ export class DocumentlistComponent implements OnInit {
   // ];
 
   tableFilter = [
-    { name: "name", title: " NAME", status: true },
-    { name: "lastOpened", title: "LAST OPENED", status: true },
-    { name: "lasCommented", title: "LAST COMMENTED", status: false },
-    { name: "owner", title: "OWNER", status: true },
-    { name: "create", title: "CREATE", status: true },
-    { name: "tags", title: "TAGS", status: true },
+    { name: "title", title: " NAME", status: true },
+    { name: "lastOpened", title: "LAST OPENED", status: false },
+    { name: "lastCommented", title: "LAST COMMENTED", status: false },
+    { name: "publisher", title: "OWNER", status: true },
+    { name: "publishedDate", title: "CREATE", status: true },
+    { name: "tag", title: "TAGS", status: true },
     { name: "updated", title: "UPDATED", status: false }
   ]
   gettableColumns() {
@@ -66,18 +66,23 @@ export class DocumentlistComponent implements OnInit {
   // }
 
 
-  createTabularItems(){
-    this.myfilesService.createTabularItems().subscribe(datas => this.datas= datas);
+  createTabularItems() {
+    this.myfilesService.createTabularItems().subscribe(datas => { 
+      this.datas = [...datas] 
+    });
   }
 
   async ngOnInit(): Promise<void> {
     await this.authService.getUser().then((user) => {
       this.user = user;
-      if (this.user){
-        this.datas = [];
-        this.columns = [];
-      }
+      console.log("DOC LIST")
+      this.createTabularItems();
+      this.columns = this.gettableColumns();
+      // if (this.user){
+      //   this.datas = [];
+      //   this.columns = [];
+      // }
     });
-    
+
   }
 }

@@ -23,9 +23,12 @@ for (let i = 1; i < 13; i++) {
     keyword: 'Lorem ipsum',
     destination: 'Lorem ipsum',
     publishedDate: new Date(2021, 4, i),
-    publisher:"Employee",
+    publisher: "Employee",
     type: i % 3 === 1 ? 'Report' : i % 3 === 2 ? 'Image' : 'Document',
-    price: (Math.random() * 100).toFixed(2)
+    price: (Math.random() * 100).toFixed(2),
+    lastOpened : null,
+    lastCommented : null,
+    updated : null
   })
 }
 
@@ -61,7 +64,7 @@ export class MyfilesService {
     return of(suggestions);
   }
 
-  getFileDetails(id : Number): Observable<any> {
+  getFileDetails(id: Number): Observable<any> {
 
     const doc = suggestions.find(item => item.id === id);
     console.log(doc)
@@ -110,19 +113,25 @@ export class MyfilesService {
   }
 
   createTabularItems(): Observable<TabularData[]> {
-    const datas = [];
-    for (let i = 1; i < 7; i++) {
-      datas.push({
-        name: 'John',
-        lastOpened: '11.40',
-        lasCommented: '10.00 am',
-        create: new Date,
-        owner: 'JOHN',
-        tags: 'Covid-19 industry report',
-        updated: new Date
-      });
+    let data = [];
+    if (localStorage.getItem("documents")) {
+      data = JSON.parse(localStorage.getItem("documents"))
     }
-    return of(datas);
+
+
+
+    // for (let i = 1; i < 7; i++) {
+    //   datas.push({
+    //     name: 'John',
+    //     lastOpened: '11.40',
+    //     lasCommented: '10.00 am',
+    //     create: new Date,
+    //     owner: 'JOHN',
+    //     tags: 'Covid-19 industry report',
+    //     updated: new Date
+    //   });
+    // }
+    return of(data);
   }
 
   getDetails(): Observable<Details> {
