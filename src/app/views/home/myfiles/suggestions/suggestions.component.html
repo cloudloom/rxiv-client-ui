@@ -4,7 +4,7 @@
             <h6 class="font-weight-semibold color-theme-1">Suggestions</h6>
             <div class="row">
                 <div class="col-4 mb-3" *ngFor="let item of suggestions">
-                    <div class="card">
+                    <div class="card suggestions">
                         <div class="card-body" (click)="openModal(template , item)">
                             <app-rxivtile [categary]=item.categary [title]=item.title
                                 [image]="'/assets/img/profiles/l-2.jpg'" [pages]=item.pages></app-rxivtile>

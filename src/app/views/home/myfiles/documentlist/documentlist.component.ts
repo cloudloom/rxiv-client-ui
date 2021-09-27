@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { UserRole } from 'src/app/shared/auth.roles';
 import { AuthService } from 'src/app/shared/auth.service';
 import { MyfilesService } from '../myfiles.service';
-
+// import { ColumnMode } from 'projects/swimlane/ngx-datatable/src/public-api';
 @Component({
   selector: 'app-documentlist',
   templateUrl: './documentlist.component.html',
@@ -15,6 +15,8 @@ export class DocumentlistComponent implements OnInit {
   datas: any = [];
   columns: any = [];
   user: any;
+
+
   // columns = [
   //   { prop: 'NAME' },
   //   { prop: 'LASTOPENED' },
@@ -37,7 +39,9 @@ export class DocumentlistComponent implements OnInit {
     const columns = [];
     this.tableFilter.forEach(item => {
       if (item.status)
-        columns.push({ prop: item.name, name: item.title })
+
+      columns.push({ prop: item.name, name: item.title })
+
     })
     return columns;
   }
@@ -67,8 +71,8 @@ export class DocumentlistComponent implements OnInit {
 
 
   createTabularItems() {
-    this.myfilesService.createTabularItems().subscribe(datas => { 
-      this.datas = [...datas] 
+    this.myfilesService.createTabularItems().subscribe(datas => {
+      this.datas = [...datas]
     });
   }
 

@@ -1,6 +1,6 @@
-.purchase-container{
-position: relative;
-.purchase-button{
+.purchase-container {
+  position: relative;
+  .purchase-button {
     position: absolute;
     top: 0;
     left: 0;
@@ -8,5 +8,10 @@ position: relative;
     display: flex;
     justify-content: center;
     width: 100%;
+  }
 }
+
+.suggestions.card {
+  border: 1px solid #e5e5e5;
+  box-shadow: none;
 }

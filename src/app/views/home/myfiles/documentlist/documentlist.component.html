@@ -1,9 +1,23 @@
-<div class="card h-100" *ngIf = "datas && datas.length">
+<div class="card h-100" *ngIf="datas && datas.length">
   <div class="card-body">
     <div class="position-relative">
-      <ngx-datatable [rows]="datas" [columns]="columns" [scrollbarV]="true" [scrollbarH]="true" [columnMode]="'force'"></ngx-datatable>
+      <ngx-datatable [rows]="datas" [scrollbarV]="true" [scrollbarH]="true" [columnMode]="'force'">
+        <ng-container *ngFor="let cell of columns">
+          <ngx-datatable-column name="{{cell.name}}">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <ng-container *ngIf="cell.prop === 'publishedDate'">
+                {{ row[cell.prop] | date:'dd MMM yyyy' }}
+              </ng-container>
+              <ng-container *ngIf="cell.prop !== 'publishedDate'">
+                {{ row[cell.prop] }}
+              </ng-container>
+            </ng-template>
+          </ngx-datatable-column>
+        </ng-container>
+      </ngx-datatable>
 
-      <div class="btn-group table-column-filter" dropdown #dropdown="bs-dropdown" [autoClose]="true" [insideClick]="true">
+      <div class="btn-group table-column-filter" dropdown #dropdown="bs-dropdown" [autoClose]="true"
+        [insideClick]="true">
         <button dropdownToggle type="button" id="table-filter-element" class="header-icon btn btn-empty">
           <i class="glyph-icon simple-icon-equalizer"></i>
           <!-- <span class="count">3</span> -->
@@ -13,7 +27,8 @@
           <perfect-scrollbar>
             <div class="m-4" *ngFor="let data of tableFilter;let indexofelement=index;">
               <div class="custom-control custom-checkbox mb-4">
-                <input type="checkbox" id="customCheckThis-{{indexofelement}}" [checked]="data.status" (change)= "updateTablefilterData(indexofelement)" class="custom-control-input">
+                <input type="checkbox" id="customCheckThis-{{indexofelement}}" [checked]="data.status"
+                  (change)="updateTablefilterData(indexofelement)" class="custom-control-input">
                 <label for="customCheckThis-{{indexofelement}}" class="custom-control-label">{{data.title}}</label>
               </div>
             </div>
