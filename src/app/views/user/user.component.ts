@@ -1,21 +1,15 @@
-import { Component, OnInit, OnDestroy, Renderer2 } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.scss'],
+  styleUrls: ['./user.component.scss']
 })
-export class UserComponent implements OnInit, OnDestroy {
+export class UserComponent implements OnInit {
 
-  constructor(private renderer: Renderer2) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.renderer.addClass(document.body, 'background');
-    this.renderer.addClass(document.body, 'no-footer');
   }
 
-  ngOnDestroy(): void {
-    this.renderer.removeClass(document.body, 'background');
-    this.renderer.removeClass(document.body, 'no-footer');
-  }
 }

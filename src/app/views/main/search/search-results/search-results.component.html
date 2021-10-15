@@ -1,0 +1,87 @@
+<div *ngIf="searchResults.length===0">
+    <ngb-alert [dismissible]="false" class="bg-secondary">
+        No data to display
+    </ngb-alert>
+</div>
+<div class="card search-results" *ngIf="searchResults.length!==0">
+    <div class="card-body">
+        <div *ngFor="let item of searchResults; let i = index;" (click)="onContextMenu($event, item)"
+            [contextMenu]="basicMenu" [contextMenuSubject]="item">
+
+
+            <a href="javascript:;"
+                class="w-40 w-sm-100 text-decoration-none text-dark d-flex justify-content-around align-items-center">
+                <!-- <div class="row mb-3"> -->
+                <div class="page-preview-container">
+                    <!-- <i class=" glyph-icon iconsminds-big-data icon-style"></i> -->
+                    <!-- <img src="/assets/img/profiles/l-2.jpg"
+                                            class="img-thumbnail list-thumbnail xsmall border-0 rounded-circle"> -->
+                    <app-page-preview></app-page-preview>
+                </div>
+                <div class="text-left search-description">
+                    <h5 class="list-item-heading mb-1 fw-bold">{{item.title}}</h5>
+                    <span class="text-primary fw-bold">PAGE {{item.pageCount}}...</span><span class="mb-4 text-small">{{
+                        item.summary }}</span>
+                </div>
+                <!-- <div class="col-1">
+                                        <i class=" glyph-icon iconsminds-folder style-icon"></i>
+                                        
+                                    </div> -->
+                <div class="text-center search-logo">
+                    <div>
+                        <img [src]="item.publisherImage" class=" border-0 logo">
+                    </div>
+                    <div>
+                        {{item.datePublished | date:'dd MMM yyyy'}}
+                    </div>
+                </div>
+                <!-- </div> -->
+            </a>
+            <!-- <div class="separator mb-5" *ngIf="datas.length!==(i+1)">
+            </div> -->
+            <hr *ngIf="searchResults.length!==(i+1)">
+        </div>
+    </div>
+</div>
+<context-menu>
+
+    <ng-template contextMenuItem *ngFor="let data of contextmenuitems" (execute)="openModal(data,$event)">
+        <!-- <ng-container *ngIf="data !== 'add to my rxiv'">
+            <i class="simple-icon-docs mr-1"></i> <span triggers="focus"
+                >{{data}}</span>
+        </ng-container>
+        <ng-container *ngIf="data === 'add to my rxiv'">
+            <button style="border: 0;background: transparent;width: 100%;text-align: left;" triggers="focus">
+                <i class="simple-icon-docs mr-1"></i>{{data}}</button>
+        </ng-container> -->
+        <div class="m-2 mb-2 ">
+            <i class="{{data.icon}} me-2"></i> <span triggers="focus">{{data.name}}</span>
+        </div>
+    </ng-template>
+
+
+</context-menu>
+
+<!-- <ul>
+    <li *ngFor="let item of items" [contextMenu]="basicMenu" [contextMenuSubject]="item">{{item?.name}}</li>
+</ul>
+<context-menu>
+  <ng-template contextMenuItem (execute)="showMessage('Hi, ' + $event.item.name)">
+    Say hi!
+  </ng-template>
+  <ng-template contextMenuItem ></ng-template>
+  <ng-template contextMenuItem let-item (execute)="showMessage($event.item.name + ' said: ' + $event.item.otherProperty)">
+    Bye, {{item?.name}}
+  </ng-template>
+  
+</context-menu> -->
+
+<!-- <ng-template #sharefile let-c="close" let-d="dismiss">
+    <div class="modal-body">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        hello....
+        <app-share-file></app-share-file>
+    </div>
+</ng-template> -->

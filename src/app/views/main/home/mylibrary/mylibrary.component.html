@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-between">
+  <h5 class="text-primary fw-bold mb-3">MY LIBRARY</h5>
+  <button type="button" class="border-0 bg-transparent text-primary fs-3" (click)="toggleView()">
+    <i *ngIf="status" class="bi bi-list"></i>
+    <i *ngIf="!status" class="bi bi-grid"></i>
+  </button>
+</div>
+
+<h4><span class="badge rounded-pill bg-light text-dark me-3 mb-3 shadow px-3 py-2"
+    *ngFor="let country of pinnedCountries">{{country.name}}</span>
+</h4>
+<div class="row" *ngIf="status">
+  <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3" *ngFor="let document of documents">
+    <app-document-card [categary]=document.category [title]=document.title [image]=document.publisherImage
+      [heading]=document.subTitle [content]=document.summary></app-document-card>
+  </div>
+</div>
+<div *ngIf="!status">
+  <table class="table doc-table">
+    <thead>
+      <tr>
+        <th class="text-primary">Title</th>
+        <th class="text-primary">Author</th>
+        <th class="text-primary">Date Added</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let document of documents">
+        <td>{{document.title}}</td>
+        <td>{{document.publisher}}</td>
+        <td>{{document.datePublished | date:'dd MMM yyyy' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

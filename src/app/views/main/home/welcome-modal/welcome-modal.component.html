@@ -1,0 +1,14 @@
+<div class="modal-body">
+    <div class="text-center">
+        <h4 class=" fw-bold text-primary mb-3">Welcome to RXIV</h4>
+        <img alt="Profile" src="{{details.image}}" class="profile-image rounded-circle mb-2">
+        <div class="d-flex justify-content-center align-items-center mb-3">
+            <h5 class="list-item-heading">{{details.name}}!</h5>
+            <!-- <i class="bi bi-pencil"></i> -->
+        </div>
+        <p class="mb-4">Before you get started,we'd like to know more about your research interests.</p>
+    </div>
+    <div class="text-end p-1">
+        <button type="button" class="btn btn-sm btn btn-primary text-light m-1 rounded-pill" (click)="gotoInterests()">LET'S GO! </button>
+    </div>
+</div>

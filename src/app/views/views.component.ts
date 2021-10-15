@@ -1,20 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-views',
-  templateUrl: './views.component.html'
+  templateUrl: './views.component.html',
+  styleUrls: ['./views.component.scss']
 })
 export class ViewsComponent implements OnInit {
 
-  constructor(private router: Router) {
-    // If you have landing page, remove below line and implement it here.
-    this.router.navigateByUrl(environment.adminRoot);
-  }
+  constructor() { }
 
-  ngOnInit() {
-
+  ngOnInit(): void {
   }
 
 }

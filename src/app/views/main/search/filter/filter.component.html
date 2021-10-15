@@ -1,0 +1,45 @@
+<div class="h-100 border-start border-primary border-2 w-100 ps-5" *ngIf = "searchResults.length">
+    <h5 class="fw-bold text-primary mb-4">
+        FILTER RESULTS
+    </h5>
+    <h6 class="fw-bold mb-4">
+        <!-- {{"pages.document.folder" | translate | uppercase}} -->COUNTRY
+    </h6>
+    <div>
+        <a>
+            <h4><span class="badge shadow badge-secondary rounded-pill mb-3  me-1  filter-container"
+                    *ngFor="let folder of selectedCountries let i =index;" (click)="updateTag1(i)"
+                    [ngClass]="folder.status === true ? 'bg-primary' : 'bg-light text-dark'">{{folder.name}}</span></h4>
+        </a>
+    </div>
+    <h6 class="fw-bold mb-4">
+        <!-- {{"pages.file-type" | translate | uppercase}} -->FILE TYPE
+    </h6>
+    <div>
+        <a>
+            <h4><span class="badge shadow rounded-pill badge-pill  mb-3  me-1 filter-container"
+                    *ngFor="let file of selectedFileTypes let i =index;" (click)="updateTag2(i)"
+                    [ngClass]="file.status === true ? 'bg-primary' : 'bg-light text-dark'">{{file.name}}</span></h4>
+        </a>
+    </div>
+    <h6 class="fw-bold mb-4">
+        <!-- {{"pages.document.brands" | translate | uppercase}} -->BRAND
+    </h6>
+    <div>
+        <a>
+            <h4><span class="badge shadow rounded-pill badge-pill  mb-3  me-1  filter-container"
+                    *ngFor="let brand of selectedBrands let i =index;" (click)="updateTag3(i)"
+                    [ngClass]="brand.status == true ? 'bg-primary' : 'bg-light text-dark'">{{brand.name}}</span></h4>
+        </a>
+    </div>
+    <h6 class="fw-bold mb-4">
+        <!-- {{"pages.study-type" | translate | uppercase}} -->STUDY TYPE
+    </h6>
+    <div>
+        <a>
+            <h4><span class="badge shadow rounded-pill badge-pill  mb-3  me-1  filter-container"
+                    *ngFor="let type of selectedStudyTypes let i =index;" (click)="updateTag4(i)"
+                    [ngClass]="type.status == true ? 'bg-primary' : 'bg-light text-dark'">{{type.name}}</span></h4>
+        </a>
+    </div>
+</div>

@@ -1,0 +1,176 @@
+<div class="d-flex justify-content-center">
+    <!-- <div class="card card-container">
+        <div class="card-body"> -->
+
+
+            <div *ngIf="edit" class="w-50">
+                <form (ngSubmit)="onsubmit()" [formGroup]="profileForm">
+                    <div class="form-group">
+                        <label for="name">Name :</label>
+                        <input type="text" class="form-control" id="name" formControlName="name">
+
+
+                        <!-- <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                            Name is required
+                        </div> -->
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Title :</label>
+                        <input type="text" class="form-control" id="title" formControlName="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">Bio :</label>
+                        <input type="text" class="form-control" id="bio" formControlName="bio">
+                    </div>
+                    <div class="form-group">
+                        <label for="organisation">Organization :</label>
+                        <input type="text" class="form-control" id="organization" formControlName="organization">
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for="team">Team :</label>
+                        <input type="text" class="form-control" id="team" [(ngModel)]="profileInformationtemp.team"
+                            name="team">
+                    </div> -->
+                    <div class="form-group">
+                        <label for="location">Location :</label>
+                        <input type="text" class="form-control" id="location" formControlName="location">
+                    </div>
+                    <div class="form-group">
+                        <label for="email"> Email:</label>
+                        <input type="email" class="form-control" id="email" formControlName="email">
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="password">Password:</label><br>
+                        <input type="password" class="form-control" id="password" formControlName="password">
+
+
+                        <!-- <div>
+                            <label for="notifications">Notifications :</label>
+                            <select class="form-control" id="notifications" required
+                            [(ngModel)]="profileInformationtemp.notifications"
+                                name="notifications">
+                                <option *ngFor="let notification of notifications" [value]="notification.id">
+                                    {{notification.value}}</option>
+                            </select>
+                        </div> -->
+
+                    </div>
+                    <div class="button-group text-end">
+                        <button type="button" class="btn btn-secondary me-3 text-primary fw-bold" (click)="onCancel()">CANCEL</button>
+                        <button type="submit" class="btn btn-primary text-light fw-bold"
+                            [disabled]="!profileForm.valid">SAVE</button>
+                    </div>
+                    <!-- <div>
+                        <label for="notifications">Notifications :</label>
+                        <select class="form-control" id="notifications" required [(ngModel)]="notifications" name="notifications"
+                            #notifications="ngModel">
+                            <option *ngFor="let notification of notifications" [value]="notifications">{{notification}}</option>
+                        </select>
+                        <div [hidden]="country.valid || country.pristine" class="alert alert-danger">
+                            Country is required
+                        </div>
+                    </div> -->
+                    <!-- <div>
+                         <label for="notify">Notify update :</label>
+                        <input type="checkbox" id="notify" [(ngModel)]="person.notifyupdate" [ngModelOptions]="{standalone: true}">
+                    </div>   -->
+                    <!-- <button type="button" class="btn btn-success">Edit</button> -->
+                    <!-- <button type="button" class="btn btn-default" (click)="newPerson();personForm.reset()" (mouseover)= "mouseover()" (mouseout) = "mouseout()">{{buttontitle}}</button> -->
+
+                </form>
+            </div>
+
+
+
+
+            <div *ngIf="!edit" class="w-100">
+                <div class="d-flex justify-content-center align-items-center mb-5">
+                    <h4 class="fw-bold me-2">My Profile</h4>
+                    <button type="button" class="border-0 bg-transparent text-start fs-5" (click)="onEdit()"><i
+                            class="bi bi-pencil"></i></button>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-6 text-end">
+                        <img class=" profile-image rounded-circle text-end" src="{{profileInformations.image}}" />
+                    </div>
+                    <h5 class="col-6 text-left fw-bold">
+                        {{profileInformations.name}}
+                    </h5>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-6 text-end fw-bold text-primary ">
+                        <!-- {{"todo.title" | translate |uppercase }} -->TITLE
+                    </div>
+                    <div class="col-6 text-left ">
+                        {{profileInformations.title}}
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-6 text-end fw-bold text-primary ">
+                        <!-- {{"profile.bio" | translate |uppercase }} -->BIO
+                    </div>
+                    <div class="col-6 text-left">
+                        {{profileInformations.bio}}
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-6 text-end fw-bold text-primary ">
+                        <!-- {{"profile.organisation" | translate |uppercase }} -->ORGANISATION
+                    </div>
+                    <div class="col-6 text-left">
+                        {{profileInformations.organization}}
+                    </div>
+                </div>
+                <!-- <div class="row mt-3">
+                <div class="col-6 text-right font-weight-bold color-theme-1 ">
+                    {{"profile.team" | translate |uppercase }}
+                </div>
+                <div class="col-6 text-left">
+                    {{profileInformations.team}}
+                </div>
+            </div> -->
+                <div class="row mb-4">
+                    <div class="col-6 text-end fw-bold text-primary ">
+                        <!-- {{"pages.location" | translate |uppercase }} -->LOCATION
+                    </div>
+                    <div class="col-6 text-left">
+                        {{profileInformations.location}}
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-6 text-end fw-bold text-primary">
+                        <!-- {{"forms.email" | translate |uppercase }} -->E MAIL
+                    </div>
+                    <div class="col-6 text-left">
+                        {{profileInformations.email}}
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-6 text-end fw-bold text-primary">
+                        <!-- {{"user.password" | translate |uppercase }} -->PASSWORD
+                    </div>
+                    <div class="col-6 text-left">
+                        {{profileInformations.password}}
+                    </div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-6 text-end fw-bold text-primary">
+                        <!-- {{"user.password" | translate |uppercase }} -->PAYMENT METHOD
+                    </div>
+                    <div class="col-6 text-left">
+                        No payment method selected yet
+                    </div>
+                </div>
+                <!-- <div class="row mt-3">
+                <div class="col-6 text-right font-weight-bold color-theme-1 ">
+                    {{"profile.notifications" | translate |uppercase }}
+                </div>
+                <div class="col-6 text-left">
+                    {{getNotificationmessage(profileInformations.notifications)}}
+                    
+                </div>
+            </div> -->
+            </div>
+        <!-- </div>
+    </div> -->
+</div>

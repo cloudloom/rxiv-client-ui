@@ -1,0 +1,30 @@
+.slider-container {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    .left-navigation{
+        margin-right: 1rem;
+    }
+  }
+  
+  .slides {
+    display: flex;
+    overflow-x: scroll;
+    // This is not supported by all browsers. If you want a different animation, please feel free
+    // to find your own solution.
+    scroll-behavior: smooth;
+    padding: .5rem 0;
+  
+    &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
+  
+  }
+  
+  .controls {
+    display: flex;
+    justify-content: center;
+  }

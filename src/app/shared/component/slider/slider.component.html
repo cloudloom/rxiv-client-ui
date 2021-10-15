@@ -1,0 +1,7 @@
+<div class="slider-container">
+    <button type="button" class="btn btn-light rounded-pill left-navigation" (click)="onClickLeft()"><i class="bi bi-arrow-left"></i></button>
+    <div class="slides" #slides>
+      <ng-content select="[appSliderItem]" #sliderItem></ng-content>
+    </div>
+    <button type="button" class="btn btn-light rounded-pill right-navigation" (click)="onClickRight()"><i class="bi bi-arrow-right"></i></button>
+  </div>

@@ -1,0 +1,25 @@
+.heading {
+  .profile-image {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  .search {
+    position: relative;
+    .search-icon {
+      position: absolute;
+      width: calc(3rem - 0.125rem);
+      height: calc(3rem - 0.125rem);
+      top: 0.0625rem;
+      left: 0.0625rem;
+      text-align: center;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    input {
+      padding-left: 3.5rem;
+    }
+  }
+}

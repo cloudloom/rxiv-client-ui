@@ -1,34 +1,38 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from 'src/app/shared/auth.service';
-import { NotificationsService, NotificationType } from 'angular2-notifications';
-import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
+  styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent  {
-  @ViewChild('registerForm') registerForm: NgForm;
+export class RegisterComponent implements OnInit {
+
+  @ViewChild('registerForm') registerForm: NgForm | undefined;
   buttonDisabled = false;
   buttonState = '';
 
-  constructor(private authService: AuthService, private notifications: NotificationsService, private router: Router) { }
+  constructor(private router: Router) { }
+
 
   onSubmit(): void {
-    if (!this.registerForm.valid || this.buttonDisabled  || this.registerForm.value.password !== this.registerForm.value) {
+    if (this.registerForm && (!this.registerForm.valid || this.buttonDisabled  || this.registerForm.value.password !== this.registerForm.value)) {
       return;
     }
     this.buttonDisabled = true;
     this.buttonState = 'show-spinner';
-    this.authService.register(this.registerForm.value).then((user) => {
-      this.router.navigate([environment.adminRoot]);
-    }).catch((error) => {
-      this.notifications.create('Error', error.message,
-        NotificationType.Bare, { theClass: 'outline primary', timeOut: 6000, showProgressBar: false });
-      this.buttonDisabled = false;
-      this.buttonState = '';
-    });
+    // this.authService.register(this.registerForm.value).then((user) => {
+    //   this.router.navigate([environment.adminRoot]);
+    // }).catch((error) => {
+    //   this.notifications.create('Error', error.message,
+    //     NotificationType.Bare, { theClass: 'outline primary', timeOut: 6000, showProgressBar: false });
+    //   this.buttonDisabled = false;
+    //   this.buttonState = '';
+    // });
   }
+
+  ngOnInit(): void {
+  }
+
 }

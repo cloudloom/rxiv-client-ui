@@ -1,4 +1,10 @@
-<!-- <div class="fixed-background"></div> -->
+<!-- <div class="container">
+  <div class="row h-100">
+    <div class="col-12 col-md-10 mx-auto my-auto">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div> -->
 <main>
   <div class="container">
     <div class="row h-100">
@@ -6,15 +12,15 @@
         
 
 
-        <div class="flex_display">
-          <div class="position">
+        <div class="flex_display d-flex align-items-center justify-content-evenly">
+          <div class="vh-100 w-50 d-flex flex-column justify-content-center align-items-start">
             <p class="login-title days-one-font">RXIV</p>
             <p class="content_area">
               Enjoy easy access to all your favourite content from ACORN
               
             </p>
           </div>
-          <div class="form-side">
+          <div class="vh-100 w-50 d-flex flex-column justify-content-center align-items-center">
             <router-outlet></router-outlet>
           </div>
         </div>

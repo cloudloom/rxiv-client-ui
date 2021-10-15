@@ -1,0 +1,36 @@
+$page-height : 100%;
+$page-width : 100%;
+$page-color: white;
+$page-box-shadow :rgba(125, 125, 125, 0.25); 
+
+.page-content{
+    background-color: $page-color;
+    width: $page-width;
+    height: $page-height;
+    position: relative;
+    box-shadow: 0 0 0 2px $page-box-shadow;
+    
+  }
+  
+  
+  .page-content-2{
+    position: absolute;
+    background-color:$page-color;
+    width: $page-width;
+    height: $page-height;
+    right: calc(100% / 50);
+    top:calc(100% / 50);
+    box-shadow: 0 0 0 2px $page-box-shadow;
+    
+  }
+  
+  .page-content-3{
+    position: absolute;
+    background-color:$page-color;
+    box-shadow: 0 0 0 2px $page-box-shadow;
+    width: $page-width;
+    height: $page-height;
+    right: calc(100% / 50);
+    top:calc(100% / 50);
+    
+  }

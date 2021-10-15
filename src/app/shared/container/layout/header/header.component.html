@@ -1,0 +1,54 @@
+<header class="heading">
+  <nav class="navbar navbar-expand-lg">
+    <div class="container-fluid row">
+      <div class="d-flex align-items-center">
+        <div class="col-3">
+          <a routerLink="/main/home" class="daysFont fs-1 text-decoration-none">
+            RXIV
+          </a>
+        </div>
+        <div class="col-6">
+          <div class="search w-100">
+            <input class="form-control form-control-lg rounded-pill" [(ngModel)]="searchKey" placeholder="Search..." (keyup.enter)="search($event)">
+            <span class="search-icon rounded-circle shadow" (click)="search($event)">
+              <i class="bi bi-search"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="col-3 text-end">
+          <div class="header-icons d-inline-block align-middle text-end me-2">
+            <span class="text-primary">Hello, </span>
+            <span>{{user.name}}</span>
+          </div>
+
+
+
+
+          <div ngbDropdown class="d-inline-block" display="dynamic">
+            <button class="border-0 bg-transparent" id="dropdownBasic1" ngbDropdownToggle>
+              <img class="profile-image rounded-circle" alt="Profile Picture" src="/assets/profile-1.png" />
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem (click)="gotoProfile()">my profile</button>
+              <button ngbDropdownItem (click)="onSignOut()">log out</button>
+            </div>
+          </div>
+          <!-- <div ngbDropdown class="d-inline-block">
+            <i class="bi bi-person fs-3" ngbDropdownToggle></i>
+            
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem>Action - 1</button>
+              <button ngbDropdownItem>Another Action</button>
+              <button ngbDropdownItem>Something else is here</button>
+            </div>
+          </div>    -->
+        </div>
+
+
+      </div>
+    </div>
+  </nav>
+
+
+</header>

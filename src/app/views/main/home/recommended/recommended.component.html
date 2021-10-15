@@ -1,0 +1,30 @@
+<div class="row">
+  <h5 class="text-primary fw-bold mb-3">RECOMMENDED FOR YOU</h5>
+  <app-slider>
+    <div appSliderItem class="col-12 col-sm-6 col-lg-4 col-xl-3 pe-3" *ngFor="let item of recommendations" (click)="openModal(item)">
+      <app-document-card [categary]=item.category [title]=item.title [image]="item.publisherImage"
+        [heading]=item.subTitle [content]=item.summary></app-document-card>
+    </div>
+  </app-slider>
+</div>
+
+
+<!-- <ng-template #content let-modal> -->
+<!-- <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div> -->
+<!-- <div class="modal-body">
+    <div class="purchase-container">
+      <img src="/assets/graph.png" style="max-width:100%;" />
+      <div class="purchase-button">
+        <button type="button" class="btn btn-primary" (click)="goToPayment()">
+          Purchase full access for ${{selectedFile.price}}
+        </button>
+      </div>
+    </div>
+  </div> -->
+<!-- <app-purchase-modal [selectedFile] = "selectedFile"></app-purchase-modal>
+</ng-template> -->

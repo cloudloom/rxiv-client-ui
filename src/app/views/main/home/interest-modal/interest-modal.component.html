@@ -1,0 +1,49 @@
+<div class="modal-body">
+    <div class="text-center">
+        <h5 class="fw-bold mb-3">Tell us what you're interested in</h5>
+        <div class="d-flex justify-content-between align-items-center">
+
+            <div class="card m-3 w-100" [ngClass]="selectedCountries.indexOf(country) > -1 ? 'bg-primary text-light' : ''" *ngFor="let country of countries let i =index;" (click) = "getSelectedCountries(country)">
+                <div class="card-body">
+                    <div class="interested-card-image-wrapper mb-2 d-flex align-items-center justify-content-center">
+                        <img [src]="country.imageUrl" class="border-0 rounded-circle mh-100 mw-100" />
+                    </div>
+                    <div>{{country.name}}</div>
+                </div>
+            </div>
+
+
+            <!-- <div class="card m-3 w-100" *ngFor="let country of countries let i =index;"
+                (click)="updateFlag(i)" 
+                [ngClass]="country.status === true ? 'bg-primary text-light' : ''">
+
+                <div class="card-body">
+                    <div class="interested-card-image-wrapper mb-2 d-flex align-items-center justify-content-center">
+                        <img [src]="country.imageUrl" class="border-0 rounded-circle img-style" />
+                    </div>
+                    <div>{{country.name}}</div>
+                </div>
+            </div> -->
+
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="card m-3 w-100" *ngFor="let organization of organizations let i =index;"
+                (click)="getSelectedOrganizations(organization)" [ngClass]="selectedOrganizations.indexOf(organization) > -1? 'bg-primary text-light' : ''">
+
+                <div class="card-body">
+                    <div class="interested-card-image-wrapper d-flex align-items-center justify-content-center">
+                        <i class="bi bi-bank glyph-style fs-1"></i>
+                    </div>
+                    <div>{{organization.name}}</div>
+                </div>
+            </div>
+
+        </div>
+        <div class="mt-3">
+            <button type="button" class="btn btn-secondary text-center me-5 rounded-pill w-50"
+                (click)="closeModal()" [disabled] = "selectedResults.length  < totalCount">{{(totalCount - selectedResults.length) <= 0 ? "LETS GO!" : "CHOOSE "+(totalCount - selectedResults.length)+" MORE"}}</button>
+            <a *ngIf = "selectedResults.length < totalCount" class="text-decoration-none" (click)="proceednow()">or Proceed now</a>
+        </div>
+
+    </div>
+</div>

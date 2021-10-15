@@ -1,0 +1,193 @@
+<h2 class="fw-bold">Purchase full access to "{{documentDetails.title}}"</h2>
+<p class="text-danger">Note : items marked with * are required</p>
+<div class="row">
+    <div class="col-6">
+        <div class="card">
+            <div class="card-body p-4">
+
+                <div class="mb-4 d-flex">
+                    <div class="me-4">
+                        <div class="page-preview-container">
+                            <app-page-preview></app-page-preview>
+                        </div>
+
+                    </div>
+                    <div>
+                        <h5 class="fw-bold">{{documentDetails.title}}</h5>
+                        <p>{{documentDetails.summary}}</p>
+
+                    </div>
+                </div>
+                <div class="text-left">
+                    <div class="row  mb-2">
+                        <div class="col-5 fw-bold text-primary">
+                            TYPE
+                        </div>
+                        <div class="col-7">
+                            {{documentDetails.type}}
+                        </div>
+                    </div>
+                    <div class="row  mb-2">
+                        <div class="col-5 fw-bold text-primary">
+                            PAGE COUNT
+                        </div>
+                        <div class="col-7">
+                            {{documentDetails.pageCount}}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-5 fw-bold text-primary">
+                            PUBLISHER
+                        </div>
+                        <div class="col-7">
+                            {{documentDetails.publisher}}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-5 fw-bold text-primary">
+                            DATE PUBLISHED
+                        </div>
+                        <div class="col-7">
+                            {{documentDetails.datePublished | date:'dd MMM yyyy'}}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-5 fw-bold text-primary">
+                            INDUSTRY
+                        </div>
+                        <div class="col-7">
+                            {{documentDetails.industry}}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-5 fw-bold text-primary ">
+                            BRAND(S)
+                        </div>
+                        <div class="col-7">
+                            {{documentDetails.brand}}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-5 fw-bold text-primary">
+                            PRODUCT LINE(S)
+                        </div>
+                        <div class="col-7">
+                            {{documentDetails.productLine}}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-5 fw-bold text-primary">
+                            STUDY TYPE
+                        </div>
+                        <div class="col-7">
+                            {{documentDetails.studyType}}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-5 fw-bold text-primary">
+                            RESEARCH TYPE
+                        </div>
+                        <div class="col-7">
+                            {{documentDetails.research.type}}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-5 fw-bold text-primary">
+                            RESEARCH METHOD
+                        </div>
+                        <div class="col-7">
+                            {{documentDetails.research.method}}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-5 fw-bold text-primary">
+                            TAGS
+                        </div>
+                        <div class="col-7">
+                            {{documentDetails.tags}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-5 fw-bold text-primary">
+                            KEYWORDS
+                        </div>
+                        <div class="col-7">
+                            {{documentDetails.keywords}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-6">
+        <div class="d-flex flex-column mx-5 w-100 h-100 justify-content-center align-items-center">
+            <form class="w-100">
+                <div class="custom-control custom-checkbox mb-4">
+                    <input type="checkbox" class="custom-control-input me-1" id="customCheckThis">
+                    <label class="custom-control-label" for="customCheckThis"><span>I accept and agree to
+                            ACORN’s</span>
+                        <span class="text-primary"> Terms and Conditions *</span></label>
+
+                </div>
+
+                <h6 class="mb-2 text-primary">PAYMENT METHOD
+                </h6>
+                <div>
+                    <div class="form-check form-check-inline mb-4">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                            value="option1">
+                        <label class="form-check-label" for="inlineRadio1">Credit/Debit Card</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                            value="option2">
+                        <label class="form-check-label" for="inlineRadio2">Google Pay</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                            value="option3">
+                        <label class="form-check-label" for="inlineRadio3">PayNow</label>
+                    </div>
+                </div>
+
+                <h6 class="text-primary">SELECT PAYMENT ACCOUNT</h6>
+                <div>
+                    <div class="d-flex align-items-center" *ngFor="let payment of creditCardsInfo">
+                        <div class="form-check form-check-inline d-flex align-items-center">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                <img class="img-container" src="/assets/visalogo.png">
+                            </label>
+                        </div>
+                        <div class="me-4">DBS/POSB</div>
+                        <div>**** {{payment.creditCardNo.slice(-4)}}</div>
+                    </div>
+                    <div class="link-container">
+                        <a (click)="openModal()">+ Add new account</a>
+                    </div>
+                    <div class="d-flex mt-4" style="flex-direction: column;">
+
+                        <div class="d-flex" style="width: 100%;align-items: baseline;">
+                            <h5 class="total-wrapper text-primary fw-bold">
+                                SUBTOTAL:
+                            </h5>
+                            <h3>
+                                ${{documentDetails.price}}
+                            </h3>
+                        </div>
+                        <div class="d-flex" style="width: 100%;align-items: baseline;">
+                            <a class="total-wrapper text-primary text-decoration-none text-start">
+                                <i class="bi bi-arrow-left me-2"></i>Cancel
+                                and
+                                return to previous page
+                            </a>
+                            <button class="btn btn-primary text-light rounded-pill" (click)="checkout()">CHECK
+                                OUT</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
