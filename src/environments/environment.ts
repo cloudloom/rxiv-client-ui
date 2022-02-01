@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  cognitoUrl: 'https://plum-gove-staging.auth.ap-southeast-1.amazoncognito.com',
+  apiUrl: 'https://api-staging-rxiv.jackfruitree.io',
+  cognitoUrl: 'https://rxiv-staging.auth.ap-southeast-1.amazoncognito.com',
   cognitoRedirectUri: 'http://localhost:4200/auth/',
   clientId: '5sqqicavtk2eue09c16ocefu90',
 };
