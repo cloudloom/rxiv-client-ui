@@ -15,6 +15,7 @@ export class SearchResultsComponent implements OnInit {
 
   @ViewChild(ContextMenuComponent, { static: true }) public basicMenu!: ContextMenuComponent;
   @Input() searchResults: any = [];
+  @Input() loading!: boolean;
   selectedResultItem: any = {};
 
   datas: any;
@@ -73,7 +74,7 @@ export class SearchResultsComponent implements OnInit {
     console.log("selectedfile", this.selectedResultItem)
 
     if (data.name === "file information") {
-      const modalRef = this.modalService.open(FileInformationComponent, { size: 'md', centered: true, keyboard: true, backdrop: true });
+      const modalRef = this.modalService.open(FileInformationComponent, { size: 'lg', centered: true, keyboard: true, backdrop: true });
       modalRef.componentInstance.document = this.selectedResultItem;
     }
 

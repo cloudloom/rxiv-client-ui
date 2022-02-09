@@ -1,9 +1,9 @@
-<div class="row">
+<div class="row" *ngIf="!loading">
   <h5 class="text-primary fw-bold mb-3">RECOMMENDED FOR YOU</h5>
   <app-slider>
     <div appSliderItem class="col-12 col-sm-6 col-lg-4 col-xl-3 pe-3" *ngFor="let item of recommendations" (click)="openModal(item)">
-      <app-document-card [categary]=item.category [title]=item.title [image]="item.publisherImage"
-        [heading]=item.subTitle [content]=item.summary></app-document-card>
+      <app-document-card [categary]=item.industry [title]=item.name [image]="item.createdBy"
+        [heading]=item.projectName [content]=item.description></app-document-card>
     </div>
   </app-slider>
 </div>
@@ -28,3 +28,7 @@
   </div> -->
 <!-- <app-purchase-modal [selectedFile] = "selectedFile"></app-purchase-modal>
 </ng-template> -->
+
+<div *ngIf="loading" class="align-items-center d-flex flex-column h-100 justify-content-center w-100">
+  <div role="status" class="spinner-border"><span class="visually-hidden">Loading...</span></div>
+</div>

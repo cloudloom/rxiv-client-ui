@@ -10,6 +10,9 @@ import { WelcomeModalComponent } from './welcome-modal/welcome-modal.component';
 import { InterestModalComponent } from './interest-modal/interest-modal.component';
 import { DocumentCardModule } from 'src/app/shared/component/document-card/document-card.module';
 import { SliderModule } from 'src/app/shared/component/slider/slider.module';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RxivAvatarModule } from 'src/app/shared/component/rxiv-avatar/rxiv-avatar.module';
 
 
 
@@ -28,7 +31,11 @@ import { SliderModule } from 'src/app/shared/component/slider/slider.module';
     HomeRoutingModule,
     NgbModule,
     DocumentCardModule,
-    SliderModule
+    SliderModule,
+    NgSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RxivAvatarModule
   ]
 })
 export class HomeModule { }

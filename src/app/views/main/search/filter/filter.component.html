@@ -1,39 +1,66 @@
-<div class="h-100 border-start border-primary border-2 w-100 ps-5" *ngIf = "searchResults.length">
+<!-- <div class="h-100 border-start border-primary border-2 w-100 ps-5" *ngIf = "searchResults.length"> -->
+<div class="h-100 border-start border-primary border-2 w-100 ps-5">
     <h5 class="fw-bold text-primary mb-4">
         FILTER RESULTS
     </h5>
     <h6 class="fw-bold mb-4">
-        <!-- {{"pages.document.folder" | translate | uppercase}} -->COUNTRY
+        FOLDER
     </h6>
     <div>
         <a>
-            <h4><span class="badge shadow badge-secondary rounded-pill mb-3  me-1  filter-container"
-                    *ngFor="let folder of selectedCountries let i =index;" (click)="updateTag1(i)"
-                    [ngClass]="folder.status === true ? 'bg-primary' : 'bg-light text-dark'">{{folder.name}}</span></h4>
+            <span class="btn btn-sm rounded-pill mb-3  me-1  filter-container"
+                [ngClass]="selectedFolders[folder.folderId] ? 'btn-primary text-light' : 'btn-outline-primary'"
+                *ngFor="let folder of folders let i =index;"
+                (click)="updateFolderFilter(folder)">{{folder.folderName}}</span>
         </a>
     </div>
+
     <h6 class="fw-bold mb-4">
-        <!-- {{"pages.file-type" | translate | uppercase}} -->FILE TYPE
+        TAGS
+    </h6>
+    <div>
+        <a>
+            <span class="btn btn-sm rounded-pill mb-3  me-1  filter-container"
+                [ngClass]="selectedTags[tag] ? 'btn-primary text-light' : 'btn-outline-primary'"
+                *ngFor="let tag of tags let i =index;" (click)="updateTagFilter(tag)">{{tag}}</span>
+        </a>
+    </div>
+
+    <h6 class="fw-bold mb-4">
+        INDUSTRIES
+    </h6>
+    <div>
+        <a>
+            <span class="btn btn-sm rounded-pill mb-3  me-1  filter-container"
+                [ngClass]="selectedIndustries[industry] ? 'btn-primary text-light' : 'btn-outline-primary'"
+                *ngFor="let industry of industries let i =index;"
+                (click)="updateIndustriesFilter(industry)">{{industry}}</span>
+        </a>
+    </div>
+
+
+    <h6 class="fw-bold mb-4">
+        COUNTRIES
+    </h6>
+    <div>
+        <a>
+            <span class="btn btn-sm rounded-pill mb-3  me-1  filter-container"
+                [ngClass]="selectedCountries[country] ? 'btn-primary text-light' : 'btn-outline-primary'"
+                *ngFor="let country of countries let i =index;"
+                (click)="updateFilter('country',country)">{{country}}</span>
+        </a>
+    </div>
+    <!-- <h6 class="fw-bold mb-4">
+        DOCUMENT TYPES
     </h6>
     <div>
         <a>
             <h4><span class="badge shadow rounded-pill badge-pill  mb-3  me-1 filter-container"
-                    *ngFor="let file of selectedFileTypes let i =index;" (click)="updateTag2(i)"
-                    [ngClass]="file.status === true ? 'bg-primary' : 'bg-light text-dark'">{{file.name}}</span></h4>
+                    *ngFor="let documentType of documentTypes let i =index;" >{{file.name}}</span></h4>
         </a>
     </div>
-    <h6 class="fw-bold mb-4">
-        <!-- {{"pages.document.brands" | translate | uppercase}} -->BRAND
-    </h6>
-    <div>
-        <a>
-            <h4><span class="badge shadow rounded-pill badge-pill  mb-3  me-1  filter-container"
-                    *ngFor="let brand of selectedBrands let i =index;" (click)="updateTag3(i)"
-                    [ngClass]="brand.status == true ? 'bg-primary' : 'bg-light text-dark'">{{brand.name}}</span></h4>
-        </a>
-    </div>
-    <h6 class="fw-bold mb-4">
-        <!-- {{"pages.study-type" | translate | uppercase}} -->STUDY TYPE
+
+    STUDY METHODS
     </h6>
     <div>
         <a>
@@ -41,5 +68,5 @@
                     *ngFor="let type of selectedStudyTypes let i =index;" (click)="updateTag4(i)"
                     [ngClass]="type.status == true ? 'bg-primary' : 'bg-light text-dark'">{{type.name}}</span></h4>
         </a>
-    </div>
+    </div> -->
 </div>

@@ -25,7 +25,10 @@
     .search-logo{
         flex-basis: 10%;
     }
-
+    p{
+        // margin-top: none;
+        margin-bottom: 0;
+    }
     
 }
 .ngx-contextmenu a {
@@ -39,3 +42,4 @@
     // background-color:chartreuse;
     text-decoration: none;
   }
+  

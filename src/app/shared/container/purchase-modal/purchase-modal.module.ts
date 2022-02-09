@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PurchaseModalComponent } from './purchase-modal.component';
+import { PagePreviewModule } from '../../component/page-preview/page-preview.module';
 
 
 
@@ -9,7 +10,8 @@ import { PurchaseModalComponent } from './purchase-modal.component';
     PurchaseModalComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    PagePreviewModule
   ],
   exports: [
     PurchaseModalComponent

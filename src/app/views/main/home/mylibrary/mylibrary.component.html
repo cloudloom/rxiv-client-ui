@@ -1,3 +1,4 @@
+<div *ngIf="!loading">
 <div class="d-flex justify-content-between">
   <h5 class="text-primary fw-bold mb-3">MY LIBRARY</h5>
   <button type="button" class="border-0 bg-transparent text-primary fs-3" (click)="toggleView()">
@@ -7,12 +8,12 @@
 </div>
 
 <h4><span class="badge rounded-pill bg-light text-dark me-3 mb-3 shadow px-3 py-2"
-    *ngFor="let country of pinnedCountries">{{country.name}}</span>
+    *ngFor="let country of pinnedCountries">{{country}}</span>
 </h4>
 <div class="row" *ngIf="status">
   <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3" *ngFor="let document of documents">
-    <app-document-card [categary]=document.category [title]=document.title [image]=document.publisherImage
-      [heading]=document.subTitle [content]=document.summary></app-document-card>
+    <app-document-card [categary]=document.industry [title]=document.name [image]=document.createdBy
+      [heading]=document.projectName [content]=document.description></app-document-card>
   </div>
 </div>
 <div *ngIf="!status">
@@ -26,10 +27,15 @@
     </thead>
     <tbody>
       <tr *ngFor="let document of documents">
-        <td>{{document.title}}</td>
-        <td>{{document.publisher}}</td>
-        <td>{{document.datePublished | date:'dd MMM yyyy' }}</td>
+        <td>{{document.name}}</td>
+        <td>{{document.client}}</td>
+        <td>{{document.created | date:'dd MMM yyyy' }}</td>
       </tr>
     </tbody>
   </table>
+</div>
+</div>
+<div *ngIf="loading" class="align-items-center d-flex flex-column h-100 justify-content-center w-100">
+  <div role="status" class="spinner-border"><span class="visually-hidden">Loading...</span></div>
+  <!-- <h3>Authenticating</h3> -->
 </div>

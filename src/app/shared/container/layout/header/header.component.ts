@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/shared/interface/user';
+import { CognitoService } from 'src/app/shared/service/cognito.service';
 import { UserService } from 'src/app/shared/service/user.service';
+import { LogoutConfirmationComponent } from '../logout-confirmation/logout-confirmation.component';
 
 @Component({
   selector: 'app-header',
@@ -13,13 +16,15 @@ export class HeaderComponent implements OnInit {
   searchKey = '';
   user!: User;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private cognitoService: CognitoService,private modalService: NgbModal) { }
 
 
   ngOnInit(): void {
 
-
-    this.userService.getUser().subscribe(user => this.user = user);
+    this.cognitoService.onLoginSucess().then((res: any) => {
+      this.user = res;
+    })
+    // this.userService.getUser().subscribe(user => this.user = user);
   }
 
   toggleSidebar() {
@@ -27,14 +32,15 @@ export class HeaderComponent implements OnInit {
   }
 
   onSignOut(): void {
-    // this.authService.signOut().subscribe(() => {
-    // this.router.navigate([this.adminRoot]);
-    this.router.navigate(["/user"]);
+    // this.cognitoService.onLogout().subscribe(() => {
+    // // this.router.navigate([this.adminRoot]);
+    // this.router.navigate(["/user"]);
     // });
+    this.modalService.open(LogoutConfirmationComponent, { size: 'md', centered: true, keyboard: false, backdrop: 'static' });
   }
 
   gotoProfile() {
-    this.router.navigate(["/main/profile"]);
+    this.router.navigate(["/app/profile"]);
   }
 
   // searchKeyUp(event: KeyboardEvent): void {
@@ -79,7 +85,7 @@ export class HeaderComponent implements OnInit {
 
   search(e: any): void {
     if (this.searchKey && this.searchKey.length > 1) {
-      this.router.navigate(['main/search'], {
+      this.router.navigate(['app/search'], {
         queryParams: { key: this.searchKey.toLowerCase().trim() },
       });
       this.searchKey = '';

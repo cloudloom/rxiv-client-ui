@@ -3,7 +3,7 @@
     <div class="container-fluid row">
       <div class="d-flex align-items-center">
         <div class="col-3">
-          <a routerLink="/main/home" class="daysFont fs-1 text-decoration-none">
+          <a routerLink="/app/home" class="daysFont fs-1 text-decoration-none">
             RXIV
           </a>
         </div>
@@ -16,7 +16,7 @@
           </div>
         </div>
 
-        <div class="col-3 text-end">
+        <div class="col-3 text-end"  *ngIf="user">
           <div class="header-icons d-inline-block align-middle text-end me-2">
             <span class="text-primary">Hello, </span>
             <span>{{user.name}}</span>
@@ -27,7 +27,8 @@
 
           <div ngbDropdown class="d-inline-block" display="dynamic">
             <button class="border-0 bg-transparent" id="dropdownBasic1" ngbDropdownToggle>
-              <img class="profile-image rounded-circle" alt="Profile Picture" src="/assets/profile-1.png" />
+              <!-- <img class="profile-image rounded-circle" alt="Profile Picture" src="/assets/profile-1.png" /> -->
+              <app-rxiv-avatar [title]="user.name"></app-rxiv-avatar>
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
               <button ngbDropdownItem (click)="gotoProfile()">my profile</button>

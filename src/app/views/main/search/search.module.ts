@@ -12,6 +12,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { SliderModule } from 'src/app/shared/component/slider/slider.module';
 import { PurchaseModalModule } from 'src/app/shared/container/purchase-modal/purchase-modal.module';
+import { RxivAvatarModule } from 'src/app/shared/component/rxiv-avatar/rxiv-avatar.module';
 
 
 
@@ -33,7 +34,8 @@ import { PurchaseModalModule } from 'src/app/shared/container/purchase-modal/pur
     NgbModule,
     FormsModule,
     SliderModule,
-    PurchaseModalModule
+    PurchaseModalModule,
+    RxivAvatarModule
   ]
 })
 export class SearchModule { }

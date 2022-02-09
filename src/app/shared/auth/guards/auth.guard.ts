@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, CanActivateChild, CanLoad, Route, Router, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
-import { AuthService } from '../auth.service';
+import { CognitoService } from '../../service/cognito.service';
+import { GlobalService } from '../../service/global.service';
+// import { AuthService } from '../auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +15,10 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad
      * Constructor
      */
     constructor(
-        private _authService: AuthService,
-        private _router: Router
+        // private _authService: AuthService,
+        private router: Router,
+        private cognitoService : CognitoService,
+        private globalService:GlobalService
     )
     {
     }
@@ -29,11 +33,30 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad
      * @param route
      * @param state
      */
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean
-    {
-        const redirectUrl = state.url === '/sign-out' ? '/' : state.url;
-        return this._check(redirectUrl);
-    }
+    // canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean
+    // {
+    //     const redirectUrl = state.url === '/sign-out' ? '/' : state.url;
+    //     return this._check(redirectUrl);
+    // }
+
+    async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<boolean> {
+        const currentUser = await this.globalService.getUserDetails();
+        if (currentUser) {
+          if (route.data && route.data.roles) {
+            if (route.data.roles.includes(currentUser.role)) {
+              return true;
+            } else {
+              this.router.navigate(['/unauthorized']);
+              return false;
+            }
+          } else {
+            return true;
+          }
+        } else {
+          this.router.navigate(['/user/login']);
+          return false;
+        }
+      }
 
     /**
      * Can activate child
@@ -41,11 +64,33 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad
      * @param childRoute
      * @param state
      */
-    canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
-    {
-        const redirectUrl = state.url === '/sign-out' ? '/' : state.url;
-        return this._check(redirectUrl);
-    }
+    // canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree
+    // {
+    //     const redirectUrl = state.url === '/sign-out' ? '/' : state.url;
+    //     return this._check(redirectUrl);
+    // }
+    async canActivateChild(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+      ): Promise<boolean> {
+        const currentUser = await this.globalService.getUserDetails();
+    
+        if (currentUser) {
+          if (route.data && route.data.roles) {
+            if (route.data.roles.includes(currentUser.role)) {
+              return true;
+            } else {
+              this.router.navigate(['/unauthorized']);
+              return false;
+            }
+          } else {
+            return true;
+          }
+        } else {
+          this.router.navigate(['/user/login']);
+          return false;
+        }
+      }
 
     /**
      * Can load
@@ -71,23 +116,35 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad
     private _check(redirectURL: string): Observable<boolean>
     {
         // Check the authentication status
-        return this._authService.check()
-                   .pipe(
-                       switchMap((authenticated) => {
+        const isLoggedIn = this.cognitoService.isLoggedIn();
 
-                           // If the user is not authenticated...
-                           if ( !authenticated )
-                           {
-                               // Redirect to the sign-in page
-                               this._router.navigate(['user/login'], {queryParams: {redirectURL}});
+        console.log("isLoggedIn" , isLoggedIn)
+        if(!isLoggedIn){
+            this.router.navigate(['/user/login'], {queryParams: {redirectURL}});
+            return of(false);
+        }else{
+            return of(true);
+        }
 
-                               // Prevent the access
-                               return of(false);
-                           }
 
-                           // Allow the access
-                           return of(true);
-                       })
-                   );
+
+        // return this._authService.check()
+        //            .pipe(
+        //                switchMap((authenticated) => {
+
+        //                    // If the user is not authenticated...
+        //                    if ( !authenticated )
+        //                    {
+        //                        // Redirect to the sign-in page
+        //                        this._router.navigate(['user/login'], {queryParams: {redirectURL}});
+
+        //                        // Prevent the access
+        //                        return of(false);
+        //                    }
+
+        //                    // Allow the access
+        //                    return of(true);
+        //                })
+        //            );
     }
 }

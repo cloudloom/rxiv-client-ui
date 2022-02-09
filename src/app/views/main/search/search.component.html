@@ -1,28 +1,25 @@
 <div class="row">
     <div class="col-9">
         <div class="d-flex align-items-center mb-3">
-            <h5 class="fw-bold text-primary">SHOWING RESULTS FOR</h5>
+            <h5 class="fw-bold text-primary">SHOWING RESULTS FOR
             <q class="text-primary fs-5">
                 {{searchkey}}
             </q>
-            
+        </h5>
         </div>
         <div class="mb-3">
 
             <h4><span class="badge rounded-pill bg-light text-dark me-3 mb-3 shadow px-3 py-2">{{searchkey}}</span>
-                <span class="badge rounded-pill bg-light text-dark me-3 mb-3 shadow px-3 py-2">{{searchkey}}</span>
-                <span class="badge rounded-pill bg-light text-dark me-3 mb-3 shadow px-3 py-2">{{searchkey}}</span>
+                <!-- <span class="badge rounded-pill bg-light text-dark me-3 mb-3 shadow px-3 py-2">{{searchkey}}</span>
+                <span class="badge rounded-pill bg-light text-dark me-3 mb-3 shadow px-3 py-2">{{searchkey}}</span> -->
             </h4>
 
 
-            <!-- <span class="badge rounded-pill bg-light text-dark">Light</span>
-            <span class="badge rounded-pill bg-light text-dark">Light</span>
-            <span class="badge rounded-pill bg-light text-dark">Light</span> -->
-            <!-- <span class="badge badge-pill badge-outline-dark mb-1 mr-1">{{searchkey}}</span>
-                <span class="badge badge-pill badge-outline-dark mb-1 mr-1">{{searchkey}}</span>
-                <span class="badge badge-pill badge-outline-dark mb-1 mr-1">{{searchkey}}</span> -->
+           
         </div>
-        <div class="d-flex justify-content-between mb-3">
+
+        
+        <!-- <div class="d-flex justify-content-between mb-3">
             <h5 class="fw-bold text-primary">RECOMMENDED FOR YOU</h5>
 
             <div ngbDropdown class="d-inline-block">
@@ -43,26 +40,26 @@
             </div>
 
 
-        </div>
+        </div> -->
 
-        <div class="row">
+        <!-- <div class="row">
             <app-slider> 
             <div appSliderItem class="col-4 mb-3 pe-3" *ngFor="let document of searchResults" (click)="openModal(document)">
-                <!-- <app-searchresults></app-searchresults> -->
-                <app-document-card [categary]=document.category [title]=document.title [image]=document.publisherImage
-                    [heading]=document.subTitle [content]=document.summary></app-document-card>
+                
+                <app-document-card [categary]=document.industry [title]=document.name [image]=document.createdBy
+                    [heading]=document.projectName [content]=document.description></app-document-card>
             </div>
             </app-slider>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-12">
-                <app-search-results [searchResults] = "searchResults"></app-search-results>
+                <app-search-results [searchResults] = "searchResults" [loading]="loading"></app-search-results>
             </div>
         </div>
 
 
     </div>
-    <div class="col-3">
-        <app-filter [searchResults] = "searchResults" [selectedCountries] = "selectedCountries" [selectedFileTypes] = "selectedFileTypes" [selectedBrands] = "selectedBrands" [selectedStudyTypes] = "selectedStudyTypes"></app-filter>
+    <div class="col-3" *ngIf="searchResultBackup && searchResultBackup.length > 0">
+        <app-filter [searchResults] = "searchResultBackup" (updateSearchresult)="updateSearchresult($event)"></app-filter>
     </div>
 </div>

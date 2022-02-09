@@ -13,15 +13,31 @@ import { DocumentService } from 'src/app/shared/service/document.service';
 })
 export class RecommendedComponent implements OnInit {
 
-  recommendations: Document[] = [];
+  recommendations: any;
+  property!: string;
+  direction!: string;
+  page = {
+    number: 0,
+    size: 20,
+    totalElements: 0
+  }
+  loading:boolean=true;
 
   constructor(private modalService: NgbModal, private documentService: DocumentService) { }
 
   ngOnInit(): void {
-    this.documentService.getRecommentedDocuments().subscribe(data => {
-      this.recommendations = data;
+    this.documentService.getDocuments(this.property, this.direction, this.page.number).subscribe(data => {
+      this.loading=false;
+      console.log("data",data)
+      this.page = data.page;
+      this.recommendations=data._embedded.documents;
+      // this.loadingIndicator = false;
     })
   }
+    // this.documentService.getRecommentedDocuments().subscribe(data => {
+    //   this.recommendations = data;
+    // })
+  // }
 
   openModal(selectedFile: Document) {
     const modalRef = this.modalService.open(PurchaseModalComponent, { centered: true, modalDialogClass: 'modal-fullscreen purchase-document-modal' , keyboard : true , backdrop : 'static'});

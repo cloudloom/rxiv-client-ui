@@ -1,8 +1,11 @@
 <ng-container *ngIf="document">
     <div class="modal-header">
-        <h4 class="text-light fw-bold d-flex" id="modal-basic-title"><button class="border-0 bg-transparent pe-5 fs-2 text-light" (click) = "close()"><i class="bi bi-arrow-left"></i></button>{{document.title}}</h4>
-        <button type="button" class="close border-0 bg-transparent text-light fs-2" aria-label="Close" (click)="showInfo = !showInfo">
-            <span ><i class="bi bi-info-circle"></i></span>
+        <h4 class="text-light fw-bold d-flex" id="modal-basic-title"><button
+                class="border-0 bg-transparent pe-5 fs-2 text-light" (click)="close()"><i
+                    class="bi bi-arrow-left"></i></button>{{document.name}}</h4>
+        <button type="button" class="close border-0 bg-transparent text-light fs-2" aria-label="Close"
+            (click)="showInfo = !showInfo">
+            <span><i class="bi bi-info-circle"></i></span>
         </button>
     </div>
     <div class="modal-body">
@@ -10,14 +13,16 @@
             <div class="col-3"></div>
             <div class="col-6">
                 <div class="purchase-button text-center mb-3">
-                    <button type="button" class="btn btn-primary text-light w-50 rounded-pill" (click)="goToPayment(document.id)">
-                        Purchase full access for ${{document.price}}
+                    <button type="button" class="btn btn-primary text-light w-50 rounded-pill"
+                        (click)="goToPayment(document.id)">
+                        Purchase full access for ${{price}}
                     </button>
                 </div>
                 <div class="card purchase-doc-container">
                     <div class="card-body">
                         <div class="text-center">
-                            <img src="/assets/graph.png" style="max-width:100%;max-height: 100%;" />
+                            <app-page-preview [selected]="document.url"></app-page-preview>
+                            <!-- <img src="/assets/graph.png" style="max-width:100%;max-height: 100%;" /> -->
 
                         </div>
                     </div>
@@ -32,7 +37,15 @@
                             <p>{{document.summary}}</p>
 
                         </div>
-                        <div class="text-left">
+                        <!-- <div class="text-left">
+                            <div class="row  mb-2">
+                                <div class="col-5 fw-bold text-primary">
+                                    PROJECT NAME
+                                </div>
+                                <div class="col-7">
+                                    {{document.projectName}}
+                                </div>
+                            </div>
                             <div class="row  mb-2">
                                 <div class="col-5 fw-bold text-primary">
                                     TYPE
@@ -43,26 +56,50 @@
                             </div>
                             <div class="row  mb-2">
                                 <div class="col-5 fw-bold text-primary">
-                                    PAGE COUNT
+                                    SUMMARY
                                 </div>
                                 <div class="col-7">
-                                    {{document.pageCount}}
+                                    {{document.description}}
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-5 fw-bold text-primary">
-                                    PUBLISHER
+                                    CLIENT
                                 </div>
                                 <div class="col-7">
-                                    {{document.publisher}}
+                                    {{document.client}}
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-5 fw-bold text-primary">
-                                    DATE PUBLISHED
+                                    DATE CREATED
                                 </div>
                                 <div class="col-7">
-                                    {{document.datePublished | date:'dd MMM yyyy'}}
+                                    {{document.created | date:'dd MMM yyyy'}}
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5 fw-bold text-primary ">
+                                    CREATEDBY
+                                </div>
+                                <div class="col-7">
+                                    {{document.createdBy}}
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5 fw-bold text-primary ">
+                                    PROJECT COMPLETION YEAR
+                                </div>
+                                <div class="col-7">
+                                    {{document.completionYear}}
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-5 fw-bold text-primary ">
+                                    LANGUAGE
+                                </div>
+                                <div class="col-7">
+                                    {{document.language}}
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -74,43 +111,19 @@
                                 </div>
                             </div>
                             <div class="row mb-2">
-                                <div class="col-5 fw-bold text-primary ">
-                                    BRAND(S)
+                                <div class="col-5 fw-bold text-primary">
+                                    STUDY METHOD
                                 </div>
                                 <div class="col-7">
-                                    {{document.brand}}
+                                    {{document.studyMethod}}
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-5 fw-bold text-primary">
-                                    PRODUCT LINE(S)
-                                </div>
-                                <div class="col-7">
-                                    {{document.productLine}}
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col-5 fw-bold text-primary">
-                                    STUDY TYPE
-                                </div>
-                                <div class="col-7">
-                                    {{document.studyType}}
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col-5 fw-bold text-primary">
-                                    RESEARCH TYPE
+                                    FOLDERS
                                 </div>
                                 <div class="col-7">
                                     {{document.research.type}}
-                                </div>
-                            </div>
-                            <div class="row mb-2">
-                                <div class="col-5 fw-bold text-primary">
-                                    RESEARCH METHOD
-                                </div>
-                                <div class="col-7">
-                                    {{document.research.method}}
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -121,19 +134,52 @@
                                     {{document.tags}}
                                 </div>
                             </div>
-                            <div class="row">
+                            <div class="row mb-2">
                                 <div class="col-5 fw-bold text-primary">
-                                    KEYWORDS
+                                    COUNTRIES
                                 </div>
                                 <div class="col-7">
                                     {{document.keywords}}
                                 </div>
                             </div>
+                            <div class="row mb-2">
+                                <div class="col-5 fw-bold text-primary">
+                                    DOCUMENT TYPES
+                                </div>
+                                <div class="col-7">
+                                    {{document.research.method}}
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <div class="row mb-3" *ngFor="let data of datas">
+                            <div class="col-5 text-primary fw-bold">
+                                {{data.title | uppercase}}
+                                <!-- {{"pages.document.type" | translate | uppercase}} -->
+                            </div>
+                            <ng-container *ngIf="data.type === 'string'">
+                                <div class="col-7">
+                                    {{document[data.key]}}
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="data.type === 'multiobj'">
+                                <div class="col-7">
+                                    <span class="btn btn-sm btn-outline-primary rounded-pill me-1 mb-1"
+                                        *ngFor="let item of document[data.key]">{{item.folderName}}</span>
+                                </div>
+                            </ng-container>
+                            <ng-container *ngIf="data.type === 'multi'">
+                                <div class="col-7">
+                                    <span class="btn btn-sm btn-outline-primary rounded-pill me-1 mb-1"
+                                        *ngFor="let item of document[data.key]">{{item}}</span>
+                                </div>
+                            </ng-container>
                         </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 </ng-container>

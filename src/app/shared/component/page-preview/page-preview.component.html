@@ -1,8 +1,13 @@
-<div class="page-content">
+<!-- <div class="page-content">
     <div class="page-content-2">
-        <div class="page-content-3">
-            <img width="100%" height="100%"
-                src="/assets/graph.png">
-        </div>
+        <div class="page-content-3"> -->
+            <!-- <img width="100%" height="100%"
+                src="/assets/graph.png"> -->
+                <div>
+                    <iframe *ngIf="urlSafe" class="doc-preview" frameBorder="0" [src]="urlSafe"></iframe>
+                    <div *ngIf="!urlSafe"> No file exist</div>
+                </div>
+            
+        <!-- </div>
     </div>
-</div>
+</div> -->

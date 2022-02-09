@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <h4 class="modal-title fw-bold">Confirm Logout</h4>
+    <button type="button" class="close border-0 bg-transparent" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body">
+    <p class="text-center">Are you sure you want to logout?</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary text-light" (click)="activeModal.close('Close click')">Cancel</button>
+    <button type="button" class="btn btn-secondary text-dark" (click)="Logout()">Logout</button>
+</div>

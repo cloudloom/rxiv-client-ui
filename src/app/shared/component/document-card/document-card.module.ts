@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DocumentCardComponent } from './document-card.component';
+import { RxivAvatarModule } from '../rxiv-avatar/rxiv-avatar.module';
 
 
 
@@ -9,7 +10,8 @@ import { DocumentCardComponent } from './document-card.component';
     DocumentCardComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    RxivAvatarModule
   ],
   exports: [DocumentCardComponent]
 })

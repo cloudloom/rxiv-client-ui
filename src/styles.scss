@@ -6,7 +6,7 @@
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Importing Bootstrap SCSS file. */
-
+@import "~@ng-select/ng-select/themes/default.theme.css";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css");
 
 @import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap");
@@ -97,4 +97,22 @@ body {
   border-radius: 1rem;
   padding: 1rem;
   background: $default-bg;
+}
+
+.doc-preview{
+  width: 100%;
+  height: 80vh;
+}
+
+.btn-outline-primary:hover {
+  color: white;
+  background-color: #478EAA;
+  border-color: #478EAA;
+}
+
+.modal-header{
+  border-bottom: none;
+}
+.modal-footer{
+  border-top: none;
 }
