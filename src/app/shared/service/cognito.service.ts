@@ -18,6 +18,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import * as moment from 'moment';
 import { GlobalService } from './global.service'
 import { ToastService } from './toast.service';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -132,7 +133,19 @@ export class CognitoService {
         });
     }
 
-    getHeader() : void | any {
+    getProfile(): Observable<any> {
+        const url = `${environment.apiUrl}/profile`;
+        return this.httpClient.get(url
+        )
+            .pipe(
+                map((res: any) => {
+                    return res;
+                })
+            );
+    }
+
+
+    getHeader(): void | any {
         let token: any = localStorage.getItem('rxiv-token');
         if (token != null) {
             const httpOptions = {

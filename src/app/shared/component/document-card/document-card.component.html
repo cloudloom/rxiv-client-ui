@@ -1,20 +1,27 @@
 <div class="card h-100">
     <div class="card-body">
         <h6 class="text-primary fw-bold">
-            {{categary}}
+            <!-- {{categary}} -->{{item.industry}}
         </h6>
         <div class="d-flex justify-content-between  mb-3">
             <h5 class="title-elipsis">
-                {{title}}
+                <!-- {{title}} -->{{item.name}}
             </h5>
-            <app-rxiv-avatar [title]="image"></app-rxiv-avatar>
+            <!-- <app-rxiv-avatar [title]="image"></app-rxiv-avatar> -->
+            <app-rxiv-avatar [title]="item.createdBy"></app-rxiv-avatar>
             <!-- <img class="profile-image rounded-circle" [src]="image" /> -->
         </div>
         <h6 class="fw-bold mb-1">
-            {{heading}}
+            <!-- {{heading}} -->{{item.projectName}}
         </h6>
         <p class="content-ellipsis">
-            {{content}}
+            <!-- {{content}} -->{{item.description}}
         </p>
+        <div class="d-flex justify-content-center" *ngIf="status">
+            <button class="d-flex align-items-center align-content-center justify-content-center btn rounded-pill px-4 py-0" 
+            data-bs-toggle="tooltip" data-bs-placement="bottom" title="Preview" (click)=onOpenModal(item)>
+                <i class="bi bi-eye fs-4 me-2"></i><span class="">Preview</span>
+            </button>
+        </div>
     </div>
 </div>

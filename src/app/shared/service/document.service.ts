@@ -105,5 +105,18 @@ export class DocumentService {
       );
   }
 
+
+  updateInterests(interestedData:any): Observable<any> {
+    const url = `${environment.apiUrl}/profile`;
+    return this.http.put(url,interestedData
+    )
+      .pipe(
+        map((res: any) => {
+
+          return res;
+        })
+      );
+  }
+
   
 }

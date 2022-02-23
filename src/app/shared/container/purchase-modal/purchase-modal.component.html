@@ -2,7 +2,7 @@
     <div class="modal-header">
         <h4 class="text-light fw-bold d-flex" id="modal-basic-title"><button
                 class="border-0 bg-transparent pe-5 fs-2 text-light" (click)="close()"><i
-                    class="bi bi-arrow-left"></i></button>{{document.name}}</h4>
+                    class="bi bi-arrow-left"></i></button>{{document?.name}}</h4>
         <button type="button" class="close border-0 bg-transparent text-light fs-2" aria-label="Close"
             (click)="showInfo = !showInfo">
             <span><i class="bi bi-info-circle"></i></span>
@@ -15,7 +15,7 @@
                 <div class="purchase-button text-center mb-3">
                     <button type="button" class="btn btn-primary text-light w-50 rounded-pill"
                         (click)="goToPayment(document.id)">
-                        Purchase full access for ${{price}}
+                        Purchase full access for {{document?.amount?.amount | currency:'SGD':'symbol'}}
                     </button>
                 </div>
                 <div class="card purchase-doc-container">

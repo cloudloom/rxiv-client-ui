@@ -163,6 +163,7 @@ export class AuthService {
       return of(true);
     }
 
+    console.log("this" , this.accessToken)
     // Check the access token availability
     if (!this.accessToken) {
       return of(false);

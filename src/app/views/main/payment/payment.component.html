@@ -1,89 +1,101 @@
+<h2 class="fw-bold" *ngIf="documentDetails && documentDetails.length">Purchase full access to
+    "{{documentDetails.name}}"
+</h2>
+<p class="text-danger">Note : items marked with * are required</p>
+<div class="row">
+    <div class="col-6" *ngIf="documentDetails && !loading">
+        <div class="card">
+            <div class="card-body p-4">
 
-    <h2 class="fw-bold" *ngIf="documentDetails && documentDetails.length">Purchase full access to
-        "{{documentDetails.name}}"
-    </h2>
-    <p class="text-danger">Note : items marked with * are required</p>
-    <div class="row">
-        <div class="col-6" *ngIf="documentDetails && !loading">
-            <div class="card">
-                <div class="card-body p-4">
-
-                    <div class="mb-4 d-flex">
-                        <div class="me-4">
-                            <div class="page-preview-container">
-                                <img width="100%" height="100%" src="/assets/graph.png">
-                                <!-- <app-page-preview></app-page-preview> -->
-                            </div>
-
+                <div class="mb-4 d-flex">
+                    <div class="me-4">
+                        <div class="page-preview-container">
+                            <img width="100%" height="100%" src="/assets/graph.png">
+                            <!-- <app-page-preview></app-page-preview> -->
                         </div>
-                        <div>
-                            <h5 class="fw-bold">{{documentDetails.name}}</h5>
-                            <p>{{documentDetails.description}}</p>
 
-                        </div>
                     </div>
-                    <div class="row mb-2" *ngFor="let data of datas">
-                        <div class="col-5 text-primary fw-bold">
-                            {{data.title | uppercase}}
-                            <!-- {{"pages.document.type" | translate | uppercase}} -->
-                        </div>
-                        <ng-container *ngIf="data.type === 'string'">
-                            <div class="col-7">
-                                {{documentDetails[data.key]}}
-                            </div>
-                        </ng-container>
-                        <ng-container *ngIf="data.type === 'multiobj'">
-                            <div class="col-7">
-                                <span class="btn btn-sm btn-outline-primary rounded-pill me-1 mb-1"
-                                    *ngFor="let item of documentDetails[data.key]">{{item.folderName}}</span>
-                            </div>
-                        </ng-container>
-                        <ng-container *ngIf="data.type === 'multi'">
-                            <div class="col-7">
-                                <span class="btn btn-sm btn-outline-primary rounded-pill me-1 mb-1"
-                                    *ngFor="let item of documentDetails[data.key]">{{item}}</span>
-                            </div>
-                        </ng-container>
-                    </div>
+                    <div>
+                        <h5 class="fw-bold">{{documentDetails.name}}</h5>
+                        <p>{{documentDetails.description}}</p>
 
+                    </div>
                 </div>
+                <div class="row mb-2" *ngFor="let data of datas">
+                    <div class="col-5 text-primary fw-bold">
+                        {{data.title | uppercase}}
+                        <!-- {{"pages.document.type" | translate | uppercase}} -->
+                    </div>
+                    <ng-container *ngIf="data.type === 'string'">
+                        <div class="col-7">
+                            {{documentDetails[data.key]}}
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="data.type === 'multiobj'">
+                        <div class="col-7">
+                            <span class="btn btn-sm btn-outline-primary rounded-pill me-1 mb-1"
+                                *ngFor="let item of documentDetails[data.key]">{{item.folderName}}</span>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="data.type === 'multi'">
+                        <div class="col-7">
+                            <span class="btn btn-sm btn-outline-primary rounded-pill me-1 mb-1"
+                                *ngFor="let item of documentDetails[data.key]">{{item}}</span>
+                        </div>
+                    </ng-container>
+                </div>
+
             </div>
-
         </div>
-        <div class="col-6">
-            <div class="d-flex flex-column mx-5 w-100 h-100 justify-content-center align-items-center">
-                <form class="w-100" (ngSubmit)="createStripeToken()" class="checkout">
 
-                    <div class="custom-control custom-checkbox mb-4">
+    </div>
+    <div class="col-6">
+        <div class="d-flex flex-column mx-5 w-100 h-100 justify-content-center align-items-center">
+            <form class="w-100" (ngSubmit)="createStripeToken()" class="checkout">
+
+                <!-- <div class="custom-control custom-checkbox mb-4">
                         <input type="checkbox" class="custom-control-input me-1" id="customCheckThis">
                         <label class="custom-control-label" for="customCheckThis"><span>I accept and agree to
                                 ACORN’s</span>
                             <span class="text-primary"> Terms and Conditions *</span></label>
 
-                    </div>
+                    </div> -->
 
 
-                    <label for="card-info" class="mb-2">Card Info</label>
-                    <div id="form-field" class="card-holder mb-5">
-                        <div id="card-info" #cardInfo class=""></div>
-                        <!-- <button id="submit-button" class="btn btn-primary text-light rounded-pill" (click)="checkout()" type="submit">
+                <label for="card-info" class="mb-2">Card Info</label>
+                <div id="form-field" class="card-holder mb-5">
+                    <div id="card-info" #cardInfo class=""></div>
+                    <!-- <button id="submit-button" class="btn btn-primary text-light rounded-pill" (click)="checkout()" type="submit">
                         Pay ${{_totalAmount}}
                     </button> -->
-                        <!-- <mat-error id="card-errors" role="alert" *ngIf="cardError">
+                    <!-- <mat-error id="card-errors" role="alert" *ngIf="cardError">
                         <mat-icon style="color: #f44336">cancel</mat-icon>
                         &nbsp;{{ cardError }}
                     </mat-error> -->
-                    </div>
-                    <button id="submit-button" class="btn btn-primary text-light rounded-pill" (click)="checkout()"
-                        type="submit">
-                        Pay ${{_totalAmount}}
+                </div>
+
+                <div class="custom-control custom-checkbox mb-4">
+                    <input type="checkbox" class="custom-control-input me-1" id="customCheckThis"
+                        (change)="checkCheckBoxvalue($event)">
+                    <label class="custom-control-label" for="customCheckThis"><span>I accept and agree to
+                            ACORN’s</span>
+                        <span class="text-primary"> Terms and Conditions *</span></label>
+
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button id="submit-button" class="btn btn-primary text-light rounded-pill px-4" type="submit"
+                        [disabled]="!status">
+                        Pay ${{documentDetails?.amount?.amount}}
+                    </button>
+                    <button id="cancel-button" class="btn btn-secondary text-light rounded-pill px-4" type="button" (click)="cancel()">
+                        Cancel
                     </button>
 
+                </div>
 
 
 
-
-                    <!-- <h6 class="mb-2 text-primary">PAYMENT METHOD
+                <!-- <h6 class="mb-2 text-primary">PAYMENT METHOD
                 </h6>
                 <div>
                     <div class="form-check form-check-inline mb-4">
@@ -139,10 +151,10 @@
                         </div>
                     </div>
                 </div> -->
-                </form>
-            </div>
+            </form>
         </div>
     </div>
+</div>
 
 <div *ngIf="loading" class="align-items-center d-flex flex-column h-100 justify-content-center w-100">
     <div role="status" class="spinner-border"><span class="visually-hidden">Loading...</span></div>

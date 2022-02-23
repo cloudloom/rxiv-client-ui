@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Country } from 'src/app/shared/interface/country';
 import { Document } from 'src/app/shared/interface/document';
 import { DocumentService } from 'src/app/shared/service/document.service';
+import { UserService } from 'src/app/shared/service/user.service';
 
 @Component({
   selector: 'app-mylibrary',
@@ -14,15 +15,16 @@ export class MylibraryComponent implements OnInit {
   pinnedCountries: any;
   status: boolean = true;
   loading: boolean = true;
+  library:boolean = true;
 
-  constructor(private documentService: DocumentService) { }
+  constructor(private documentService: DocumentService,private userService:UserService) { }
 
   toggleView() {
     this.status = !this.status;
   }
 
   ngOnInit(): void {
-    this.documentService.getMyLibrary().subscribe(data => {
+    this.userService.getMyLibrary().subscribe(data => {
       this.loading = false;
       this.documents = data;
       console.log("datas", this.documents);

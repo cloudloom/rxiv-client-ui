@@ -7,13 +7,15 @@
   </button>
 </div>
 
-<h4><span class="badge rounded-pill bg-light text-dark me-3 mb-3 shadow px-3 py-2"
+<!-- <h4><span class="badge rounded-pill bg-light text-dark me-3 mb-3 shadow px-3 py-2"
     *ngFor="let country of pinnedCountries">{{country}}</span>
+</h4> -->
+<h4><span class="badge rounded-pill bg-light text-dark me-3 mb-3 shadow px-3 py-2"
+  *ngFor="let country of pinnedCountries">{{country}}</span>
 </h4>
 <div class="row" *ngIf="status">
   <div class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-3" *ngFor="let document of documents">
-    <app-document-card [categary]=document.industry [title]=document.name [image]=document.createdBy
-      [heading]=document.projectName [content]=document.description></app-document-card>
+    <app-document-card  [item]="document" [status]="false"></app-document-card>
   </div>
 </div>
 <div *ngIf="!status">

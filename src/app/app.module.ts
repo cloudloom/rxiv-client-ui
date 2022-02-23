@@ -7,16 +7,22 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ContextMenuModule } from 'ngx-contextmenu';
 import { TokenInterceptor } from '../app/shared/token.interceptor'
+import { SharedModule } from './shared/shared.module';
+import { ToastComponent } from './shared/component/toast/toast.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    SharedModule,
+    NgbModule,
     FormsModule, ReactiveFormsModule,
     ContextMenuModule.forRoot()
   ],

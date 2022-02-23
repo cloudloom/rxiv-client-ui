@@ -14,14 +14,15 @@ import industries from '../../../../data/industries'
 })
 export class InterestModalComponent implements OnInit {
 
-  interestedAreas: any;
-  interestedRoles: any;
+  // interestedAreas: any;
+  // interestedRoles: any;
   countries: any = [];
-  organizations: Organization[] = [];
-  selectedCountries: Country[] = [];
+  // organizations: Organization[] = [];
+  selectedCountries: any = [];
+  selectedIndustries: any =[];
   totalCount: number = 6;
-  selectedOrganizations: Organization[] = [];
-  selectedResults: any = [];
+  // selectedOrganizations: Organization[] = [];
+  selectedResults: any = {};
   documentForm!: FormGroup;
   industries: string[] = industries
 
@@ -39,29 +40,29 @@ export class InterestModalComponent implements OnInit {
   //   this.categoryService.getOrganizations().subscribe(organizationData => this.organizations = organizationData)
   // }
 
-  updateFlag(indexflag: any) {
-    this.countries[indexflag].status = !this.countries[indexflag].status;
-  }
-  updateRole(indexrole: any) {
-    this.organizations[indexrole].status = !this.organizations[indexrole].status;
-  }
+  // updateFlag(indexflag: any) {
+  //   this.countries[indexflag].status = !this.countries[indexflag].status;
+  // }
+  // updateRole(indexrole: any) {
+  //   this.organizations[indexrole].status = !this.organizations[indexrole].status;
+  // }
 
-  chooseCountries() {
+  // chooseCountries() {
 
-    // this.activeModal.close('Close click')
-    this.selectedResults = [...this.selectedCountries, ...this.selectedOrganizations];
-    console.log("eeee", this.selectedResults)
+  //   // this.activeModal.close('Close click')
+  //   this.selectedResults = [...this.selectedCountries, ...this.selectedOrganizations];
+  //   console.log("eeee", this.selectedResults)
     
 
-    //     let filteredCountries = this.interestedAreas.filter(country => {
-    //       return country.status;
+  //   //     let filteredCountries = this.interestedAreas.filter(country => {
+  //   //       return country.status;
 
-    //     })
-    // this.myfileservice.setCountries(filteredCountries)
+  //   //     })
+  //   // this.myfileservice.setCountries(filteredCountries)
 
-    //     console.log("countries", filteredCountries);
-    //     this.newEvent1.emit();
-  }
+  //   //     console.log("countries", filteredCountries);
+  //   //     this.newEvent1.emit();
+  // }
 
 
   proceednow() {
@@ -74,7 +75,7 @@ export class InterestModalComponent implements OnInit {
 
     this.documentForm = this.fb.group({
       countries: ['', Validators.required],
-      industry: ['', Validators.required],
+      industries: ['', Validators.required],
     });
     // this.interestedAreas = this.createInterestedAreas();
     // this.interestedRoles = this.createInterestedRoles();
@@ -100,22 +101,24 @@ export class InterestModalComponent implements OnInit {
         countrySet.add(country)
       })
       this.countries = Array.from(countrySet);
-      console.log("cou", this.countries);
+      // console.log("cou", this.countries);
     })
 
     
 
   }
-  getSelectedCountries(country: Country) {
+  getSelectedCountries(country: any) {
 
 
-    if (this.selectedCountries.indexOf(country) > -1) {
-      this.selectedCountries.splice(this.selectedCountries.indexOf(country), 1)
-    } else {
-      this.selectedCountries.push(country)
-    }
 
-    this.chooseCountries();
+
+    // if (this.selectedCountries.indexOf(country) > -1) {
+    //   this.selectedCountries.splice(this.selectedCountries.indexOf(country), 1)
+    // } else {
+    //   this.selectedCountries.push(country)
+    // }
+
+    // this.chooseCountries();
 
     // const countries : any = {};
     // countries[country.id] = country;
@@ -123,21 +126,26 @@ export class InterestModalComponent implements OnInit {
 
     // this.selectedCountries = Object.values(countries)
     // // this.selectedCountries.push(countries)
-    // console.log("nnnnn",this.selectedCountries);
+    console.log("nnnnn",country);
   }
 
-  getSelectedOrganizations(organization: Organization) {
+  // getSelectedOrganizations(organization: Organization) {
 
-    if (this.selectedOrganizations.indexOf(organization) > -1) {
-      this.selectedOrganizations.splice(this.selectedOrganizations.indexOf(organization), 1)
-    } else {
-      this.selectedOrganizations.push(organization)
-    }
-    this.chooseCountries();
+  //   if (this.selectedOrganizations.indexOf(organization) > -1) {
+  //     this.selectedOrganizations.splice(this.selectedOrganizations.indexOf(organization), 1)
+  //   } else {
+  //     this.selectedOrganizations.push(organization)
+  //   }
+  //   this.chooseCountries();
 
-  }
-  closeModal() {
-    this.activeModal.close('Close click')
+  // }
+  choose() {
+    console.log("value", this.documentForm.value);
+    this.documentService.updateInterests(this.documentForm.value).subscribe(data =>{
+      console.log("selections", data);
+      this.activeModal.close('Close click')
+    })
+    // this.activeModal.close('Close click')
   }
   // counter(){
   //   let totalCount ;

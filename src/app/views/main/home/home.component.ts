@@ -11,17 +11,24 @@ import { WelcomeModalComponent} from './welcome-modal/welcome-modal.component'
 })
 export class HomeComponent implements OnInit {
   
-  userDetails!: User;
+  userDetails!: any;
 
   constructor(private modalService: NgbModal, private userService : UserService) { }
 
 
   ngOnInit(){
-this.userService.getUser().subscribe(data => this.userDetails = data);
+// this.userService.getUser().subscribe(data => this.userDetails = data);
+this.userService.getProfile().subscribe(data => {
+  console.log("userdata",data);
+  this.userDetails = data;
+  if(this.userDetails.setup === false){
+    this.modalService.open(WelcomeModalComponent,{ size: 'md',centered: true, keyboard : false , backdrop : 'static' });
+  }
+})
 console.log("user",this.userDetails);
-if(this.userDetails.alreadyViewed === false){
-  this.modalService.open(WelcomeModalComponent,{ size: 'md',centered: true, keyboard : false , backdrop : 'static' });
-}
+// if(this.userDetails.alreadyViewed === false){
+//   this.modalService.open(WelcomeModalComponent,{ size: 'md',centered: true, keyboard : false , backdrop : 'static' });
+// }
    
   }
   

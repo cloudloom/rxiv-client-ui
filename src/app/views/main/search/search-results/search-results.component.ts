@@ -2,6 +2,7 @@ import { hasLifecycleHook } from '@angular/compiler/src/lifecycle_reflector';
 import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgbAlertConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ContextMenuComponent, ContextMenuService } from 'ngx-contextmenu';
+import { PurchaseModalComponent } from 'src/app/shared/container/purchase-modal/purchase-modal.component';
 import { FileInformationComponent } from '../file-information/file-information.component';
 
 @Component({
@@ -22,8 +23,9 @@ export class SearchResultsComponent implements OnInit {
   contextmenuitems = [
     { icon: 'bi bi-eye', name: 'preview' },
     { icon: 'bi bi-info-circle', name: 'file information' },
-    { icon: 'bi bi-download', name: 'download' },
-    { icon: 'bi bi-trash', name: 'delete' }]
+    // { icon: 'bi bi-download', name: 'download' },
+    // { icon: 'bi bi-trash', name: 'delete' }
+  ]
 
   //   items = [
   //     { name: 'John', otherProperty: 'Foo' },
@@ -78,10 +80,15 @@ export class SearchResultsComponent implements OnInit {
       modalRef.componentInstance.document = this.selectedResultItem;
     }
 
-    // if (data === "share") {
-    //   this.fileinfomodalRef = this.modalService.show(
-    //     this.fileInfo,
-    //     Object.assign({}, { class: 'modal-md modal-dialog-centered' })
+    if (data.name === "preview") {
+      const modalRef = this.modalService.open(PurchaseModalComponent, { centered: true, modalDialogClass: 'modal-fullscreen purchase-document-modal' , keyboard : true , backdrop : 'static'});
+      modalRef.componentInstance.document = this.selectedResultItem;
+    }
+
+    // if (data.name === "file information") {
+    //   const modalRef = this.modalService.open(PurchaseModalComponent, { centered: true, modalDialogClass: 'modal-fullscreen purchase-document-modal' , keyboard : true , backdrop : 'static'});
+    //   modalRef.componentInstance.document = this.selectedResultItem;
+    // }
 
     //   );
     //   }else if(data === "share"){

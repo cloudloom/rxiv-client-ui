@@ -1,9 +1,8 @@
-<div class="row" *ngIf="!loading">
+<div class="row recommends" *ngIf="!loading">
   <h5 class="text-primary fw-bold mb-3">RECOMMENDED FOR YOU</h5>
   <app-slider>
-    <div appSliderItem class="col-12 col-sm-6 col-lg-4 col-xl-3 pe-3" *ngFor="let item of recommendations" (click)="openModal(item)">
-      <app-document-card [categary]=item.industry [title]=item.name [image]="item.createdBy"
-        [heading]=item.projectName [content]=item.description></app-document-card>
+    <div appSliderItem class="col-12 col-sm-6 col-lg-4 col-xl-3 pe-3" *ngFor="let item of recommendations">
+      <app-document-card [item]=item (openModal)="openModal($event)" [status]="true"></app-document-card>
     </div>
   </app-slider>
 </div>

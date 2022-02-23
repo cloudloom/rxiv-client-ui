@@ -39,9 +39,11 @@ export class RecommendedComponent implements OnInit {
     // })
   // }
 
-  openModal(selectedFile: Document) {
+  openModal(selectedFile: any) {
     const modalRef = this.modalService.open(PurchaseModalComponent, { centered: true, modalDialogClass: 'modal-fullscreen purchase-document-modal' , keyboard : true , backdrop : 'static'});
     modalRef.componentInstance.document = selectedFile;
+    console.log("hi",selectedFile);
+
   }
 
 

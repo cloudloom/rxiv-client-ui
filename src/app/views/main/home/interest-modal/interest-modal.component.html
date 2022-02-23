@@ -38,7 +38,7 @@
                     <div class="col-6">
                         <label for="industries" class="form-label">Industries</label>
                         <ng-select [items]="industries" [hideSelected]="true" [multiple]="true" [closeOnSelect]="false"
-                            formControlName="industry">
+                            formControlName="industries">
                         </ng-select>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                 [disabled]="selectedResults.length  < totalCount">{{(totalCount - selectedResults.length) <= 0
                     ? "LETS GO!" : "CHOOSE " +(totalCount - selectedResults.length)+" MORE"}}</button> -->
 
-                    <button type="button" class="btn btn-secondary text-center me-5 rounded-pill w-50" (click)="closeModal()"
+                    <button type="button" class="btn btn-secondary text-center me-5 rounded-pill w-50" (click)="choose()"
                   >Choose</button>
 
 
