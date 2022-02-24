@@ -8,7 +8,7 @@ export const environment = {
   apiUrl: 'https://api-staging-rxiv.jackfruitree.io',
   websocketUrl: 'wss://api-staging-rxiv.jackfruitree.io',
   cognitoUrl: 'https://rxiv-staging.auth.ap-southeast-1.amazoncognito.com',
-  cognitoRedirectUri: 'http://localhost:4200/auth',
+  cognitoRedirectUri: 'https://rxiv-client.netlify.app/auth',
   clientId: '1nu290oara2m1qfpcc1rvta4sq',
   poolData: {
     ClientId: '1nu290oara2m1qfpcc1rvta4sq',
